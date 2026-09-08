@@ -10,7 +10,6 @@ SERVERS = [
     "https://overpass.kumi.systems/api/interpreter"
 ]
 
-# Schweiz in 2 Bounding-Boxes aufgeteilt (West & Ost)
 BBOXES = [
     ("45.81,5.95,47.81,8.23"),
     ("45.81,8.23,47.81,10.50")
@@ -72,24 +71,51 @@ try:
             continue
 
         tags = el.get('tags', {})
+
+        # Name & Betreiber
         name = tags.get('name') or ('Eurokey WC' if tags.get('amenity') == 'toilets' else 'Eurokey-Anlage')
-        desc = tags.get('description') or tags.get('operator') or ''
+        operator = tags.get('operator') or ''
+        
+        # Adresse zusammenbauen
+        street = tags.get('addr:street', '')
+        housenumber = tags.get('addr:housenumber', '')
+        postcode = tags.get('addr:postcode', '')
+        city = tags.get('addr:city', '')
+        
+        address_parts = []
+        if street:
+            address_parts.append(f"{street} {housenumber}".strip())
+        if postcode or city:
+            address_parts.append(f"{postcode} {city}".strip())
+        address = ", ".join(address_parts)
+
+        # Zusätzliche Details
+        opening_hours = tags.get('opening_hours') or ''
+        fee = tags.get('fee') or tags.get('charge') or ''
+        level = tags.get('level') or ''
+        wheelchair = tags.get('wheelchair') or ''
         typ = tags.get('amenity') or tags.get('highway') or 'Anlage'
+        desc = tags.get('description') or ''
 
         cleaned_data.append({
             'id': f"osm_{el_id}",
             'lat': lat,
             'lon': lon,
             'name': name,
+            'operator': operator,
+            'address': address,
+            'opening_hours': opening_hours,
+            'fee': fee,
+            'level': level,
+            'wheelchair': wheelchair,
             'desc': desc,
-            'type': typ,
-            'source': 'OpenStreetMap'
+            'type': typ
         })
 
     with open('data.json', 'w', encoding='utf-8') as f:
         json.dump(cleaned_data, f, ensure_ascii=False, indent=2)
 
-    print(f"Fertig: {len(cleaned_data)} eindeutige Standorte in data.json gespeichert.")
+    print(f"Fertig: {len(cleaned_data)} Einträge mit Detail-Tags gespeichert.")
 
 except Exception as e:
     print(f"Kritischer Fehler: {e}")
