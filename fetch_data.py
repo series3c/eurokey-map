@@ -10,34 +10,28 @@ SERVERS = [
     "https://overpass.kumi.systems/api/interpreter"
 ]
 
-# Schweiz in 2 Bounding-Boxes aufgeteilt: West & Ost (senkt Rechenlast drastisch)
+# Schweiz in 2 Bounding-Boxes aufgeteilt (West & Ost)
 BBOXES = [
-    ("45.81,5.95,47.81,8.23"),   # Westschweiz
-    ("45.81,8.23,47.81,10.50")   # Ostschweiz
+    ("45.81,5.95,47.81,8.23"),
+    ("45.81,8.23,47.81,10.50")
 ]
 
 headers = {'User-Agent': 'EurokeyFinderCH-Bot/1.0 (GitHubActions)'}
 
 def fetch_bbox(bbox):
-    query = f"""
-    [out:json][timeout:60];
-    (
-      // 1. Offizieller Standard-Tag
-      node["centralkey"="eurokey"]({bbox});
-      way["centralkey"="eurokey"]({bbox});
-      
-      // 2. Spezifischer Toiletten-Tag
-      node["toilets:centralkey"="eurokey"]({bbox});
-      way["toilets:centralkey"="eurokey"]({bbox});
-
-      // 3. Alternative und barrierefreie Tags
-      node["eurokey"="yes"]({bbox});
-      way["eurokey"="yes"]({bbox});
-      node["wheelchair:eurokey"="yes"]({bbox});
-      way["wheelchair:eurokey"="yes"]({bbox});
-    );
-    out center;
-    """
+    query = f"""[out:json][timeout:60];
+(
+  node["centralkey"="eurokey"]({bbox});
+  way["centralkey"="eurokey"]({bbox});
+  node["toilets:centralkey"="eurokey"]({bbox});
+  way["toilets:centralkey"="eurokey"]({bbox});
+  node["eurokey"="yes"]({bbox});
+  way["eurokey"="yes"]({bbox});
+  node["wheelchair:eurokey"="yes"]({bbox});
+  way["wheelchair:eurokey"="yes"]({bbox});
+);
+out center;"""
+    
     data = urllib.parse.urlencode({'data': query}).encode('utf-8')
     
     for server in SERVERS:
@@ -59,7 +53,7 @@ try:
     all_elements = []
     for i, bbox in enumerate(BBOXES):
         if i > 0:
-            time.sleep(3)  # Kurze Pause zwischen den Abfragen
+            time.sleep(3)
         elements = fetch_bbox(bbox)
         all_elements.extend(elements)
 
@@ -83,12 +77,13 @@ try:
         typ = tags.get('amenity') or tags.get('highway') or 'Anlage'
 
         cleaned_data.append({
-            'id': el_id,
+            'id': f"osm_{el_id}",
             'lat': lat,
             'lon': lon,
             'name': name,
             'desc': desc,
-            'type': typ
+            'type': typ,
+            'source': 'OpenStreetMap'
         })
 
     with open('data.json', 'w', encoding='utf-8') as f:
