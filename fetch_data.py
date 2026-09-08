@@ -1,46 +1,78 @@
 import json
 import urllib.request
 import urllib.parse
+import time
 import sys
 
-# Bounding Box Schweiz: Süd, West, Nord, Ost
-query = """
-[out:json][timeout:60];
-(
-  node["eurokey"="yes"](45.81,5.95,47.81,10.50);
-  way["eurokey"="yes"](45.81,5.95,47.81,10.50);
-);
-out center;
-"""
+SERVERS = [
+    "https://overpass-api.de/api/interpreter",
+    "https://overpass.osm.ch/api/interpreter",
+    "https://overpass.kumi.systems/api/interpreter"
+]
 
-url = "https://overpass-api.de/api/interpreter"
-data = urllib.parse.urlencode({'data': query}).encode('utf-8')
-headers = {'User-Agent': 'EurokeyMapBot/1.0 (GitHubAction; Contact: series3c)'}
+# Schweiz in 2 Bounding-Boxes aufgeteilt: West & Ost (senkt Rechenlast drastisch)
+BBOXES = [
+    ("45.81,5.95,47.81,8.23"),   # Westschweiz
+    ("45.81,8.23,47.81,10.50")   # Ostschweiz
+]
 
-req = urllib.request.Request(url, data=data, headers=headers)
+headers = {'User-Agent': 'EurokeyFinderCH-Bot/1.0 (GitHubActions)'}
+
+def fetch_bbox(bbox):
+    query = f"""
+    [out:json][timeout:60];
+    (
+      node["eurokey"="yes"]({bbox});
+      way["eurokey"="yes"]({bbox});
+    );
+    out center;
+    """
+    data = urllib.parse.urlencode({'data': query}).encode('utf-8')
+    
+    for server in SERVERS:
+        try:
+            print(f"Versuche Abfrage ({bbox}) an {server}...")
+            req = urllib.request.Request(server, data=data, headers=headers)
+            with urllib.request.urlopen(req, timeout=90) as resp:
+                result = json.loads(resp.read().decode('utf-8'))
+                elements = result.get('elements', [])
+                print(f"Erfolg: {len(elements)} Elemente von {server} erhalten.")
+                return elements
+        except Exception as e:
+            print(f"Warnung: {server} fehlgeschlagen: {e}")
+            time.sleep(2)
+            
+    raise RuntimeError(f"Alle Overpass-Server für BBox {bbox} fehlgeschlagen.")
 
 try:
-    print("Starte Abfrage an Overpass API...")
-    with urllib.request.urlopen(req, timeout=90) as response:
-        raw_data = json.loads(response.read().decode('utf-8'))
-        
-    elements = raw_data.get('elements', [])
-    print(f"{len(elements)} Rohdaten-Elemente empfangen.")
+    all_elements = []
+    for i, bbox in enumerate(BBOXES):
+        if i > 0:
+            time.sleep(3)  # Kurze Pause zwischen den Abfragen
+        elements = fetch_bbox(bbox)
+        all_elements.extend(elements)
 
+    seen_ids = set()
     cleaned_data = []
-    for el in elements:
+
+    for el in all_elements:
+        el_id = el.get('id')
+        if el_id in seen_ids:
+            continue
+        seen_ids.add(el_id)
+
         lat = el.get('lat') or (el.get('center', {}).get('lat'))
         lon = el.get('lon') or (el.get('center', {}).get('lon'))
         if not lat or not lon:
             continue
-            
+
         tags = el.get('tags', {})
         name = tags.get('name') or ('Eurokey WC' if tags.get('amenity') == 'toilets' else 'Eurokey-Anlage')
         desc = tags.get('description') or tags.get('operator') or ''
         typ = tags.get('amenity') or tags.get('highway') or 'Anlage'
 
         cleaned_data.append({
-            'id': el.get('id'),
+            'id': el_id,
             'lat': lat,
             'lon': lon,
             'name': name,
@@ -51,8 +83,8 @@ try:
     with open('data.json', 'w', encoding='utf-8') as f:
         json.dump(cleaned_data, f, ensure_ascii=False, indent=2)
 
-    print(f"Erfolgreich {len(cleaned_data)} Standorte in data.json gespeichert.")
+    print(f"Fertig: {len(cleaned_data)} eindeutige Standorte in data.json gespeichert.")
 
 except Exception as e:
-    print(f"Fehler beim Abrufen der Daten: {e}")
+    print(f"Kritischer Fehler: {e}")
     sys.exit(1)
