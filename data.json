@@ -1,1586 +1,1775 @@
 [
   {
-    "id": 75940437,
+    "id": "osm_75940437",
     "lat": 47.5704398,
     "lon": 7.5898353,
     "name": "Eurokey WC",
     "desc": "",
-    "type": "toilets"
+    "type": "toilets",
+    "source": "OpenStreetMap"
   },
   {
-    "id": 295504768,
+    "id": "osm_295504768",
     "lat": 47.3910794,
     "lon": 8.0335081,
     "name": "Eurokey WC",
     "desc": "",
-    "type": "toilets"
+    "type": "toilets",
+    "source": "OpenStreetMap"
   },
   {
-    "id": 320641876,
+    "id": "osm_320641876",
     "lat": 47.1201129,
     "lon": 7.228074,
     "name": "Eurokey WC",
     "desc": "",
-    "type": "toilets"
+    "type": "toilets",
+    "source": "OpenStreetMap"
   },
   {
-    "id": 338693650,
+    "id": "osm_338693650",
     "lat": 46.4622623,
     "lon": 6.8476449,
     "name": "Eurokey WC",
     "desc": "Ville de Vevey",
-    "type": "toilets"
+    "type": "toilets",
+    "source": "OpenStreetMap"
   },
   {
-    "id": 341874477,
+    "id": "osm_341874477",
     "lat": 46.4608716,
     "lon": 6.855116,
     "name": "Eurokey WC",
     "desc": "Ville de Vevey",
-    "type": "toilets"
+    "type": "toilets",
+    "source": "OpenStreetMap"
   },
   {
-    "id": 360027126,
+    "id": "osm_360027126",
     "lat": 46.4582774,
     "lon": 6.8500249,
     "name": "Eurokey WC",
     "desc": "Ville de Vevey",
-    "type": "toilets"
+    "type": "toilets",
+    "source": "OpenStreetMap"
   },
   {
-    "id": 365114012,
+    "id": "osm_365114012",
     "lat": 46.4635137,
     "lon": 6.8424443,
     "name": "Eurokey WC",
     "desc": "Ville de Vevey",
-    "type": "toilets"
+    "type": "toilets",
+    "source": "OpenStreetMap"
   },
   {
-    "id": 365394524,
+    "id": "osm_365394524",
     "lat": 46.6902897,
     "lon": 7.6765893,
     "name": "Eurokey WC",
     "desc": "",
-    "type": "toilets"
+    "type": "toilets",
+    "source": "OpenStreetMap"
   },
   {
-    "id": 370383044,
+    "id": "osm_370383044",
     "lat": 46.4589324,
     "lon": 6.8405229,
     "name": "Eurokey WC",
     "desc": "Ville de Vevey",
-    "type": "toilets"
+    "type": "toilets",
+    "source": "OpenStreetMap"
   },
   {
-    "id": 436107724,
+    "id": "osm_436107724",
     "lat": 47.1413375,
     "lon": 7.2469575,
     "name": "Eurokey WC",
     "desc": "",
-    "type": "toilets"
+    "type": "toilets",
+    "source": "OpenStreetMap"
   },
   {
-    "id": 453573497,
+    "id": "osm_453573497",
     "lat": 46.9517944,
     "lon": 7.4614445,
     "name": "Eurokey WC",
     "desc": "",
-    "type": "toilets"
+    "type": "toilets",
+    "source": "OpenStreetMap"
   },
   {
-    "id": 539180396,
+    "id": "osm_539180396",
     "lat": 46.9326507,
     "lon": 7.4729955,
     "name": "Eurokey WC",
     "desc": "Behindertentoilette",
-    "type": "toilets"
+    "type": "toilets",
+    "source": "OpenStreetMap"
   },
   {
-    "id": 615039260,
+    "id": "osm_615039260",
     "lat": 46.9667039,
     "lon": 7.4638593,
     "name": "Eurokey WC",
     "desc": "Bei Veranstaltungen im Stade de Suisse meistens geschlossen.",
-    "type": "toilets"
+    "type": "toilets",
+    "source": "OpenStreetMap"
   },
   {
-    "id": 618283603,
+    "id": "osm_618283603",
     "lat": 46.9561328,
     "lon": 7.426368,
     "name": "Eurokey WC",
     "desc": "",
-    "type": "toilets"
+    "type": "toilets",
+    "source": "OpenStreetMap"
   },
   {
-    "id": 637465582,
-    "lat": 47.713966,
-    "lon": 7.657173,
-    "name": "Eurokey WC",
-    "desc": "",
-    "type": "toilets"
-  },
-  {
-    "id": 1116056803,
+    "id": "osm_1116056803",
     "lat": 46.9309555,
     "lon": 7.1172272,
     "name": "Eurokey WC",
     "desc": "",
-    "type": "toilets"
+    "type": "toilets",
+    "source": "OpenStreetMap"
   },
   {
-    "id": 1116059466,
+    "id": "osm_1116059466",
     "lat": 46.9290668,
     "lon": 7.1190092,
     "name": "Eurokey WC",
     "desc": "",
-    "type": "toilets"
+    "type": "toilets",
+    "source": "OpenStreetMap"
   },
   {
-    "id": 1286974291,
+    "id": "osm_1286974291",
     "lat": 46.9448094,
     "lon": 7.4452429,
     "name": "Eurokey WC",
     "desc": "Stadt Bern",
-    "type": "toilets"
+    "type": "toilets",
+    "source": "OpenStreetMap"
   },
   {
-    "id": 1496382441,
+    "id": "osm_1496382441",
     "lat": 46.2119255,
     "lon": 6.1497881,
     "name": "Eurokey WC",
     "desc": "",
-    "type": "toilets"
+    "type": "toilets",
+    "source": "OpenStreetMap"
   },
   {
-    "id": 1496384986,
+    "id": "osm_1496384986",
     "lat": 46.2223128,
     "lon": 6.1390563,
     "name": "Eurokey WC",
     "desc": "",
-    "type": "toilets"
+    "type": "toilets",
+    "source": "OpenStreetMap"
   },
   {
-    "id": 1496386778,
+    "id": "osm_1496386778",
     "lat": 46.1979998,
     "lon": 6.142503,
     "name": "Eurokey WC",
     "desc": "",
-    "type": "toilets"
+    "type": "toilets",
+    "source": "OpenStreetMap"
   },
   {
-    "id": 1806840561,
+    "id": "osm_1806840561",
     "lat": 47.6552781,
     "lon": 7.5639342,
     "name": "Eurokey WC",
     "desc": "Gemeinde Efringen-Kirchen",
-    "type": "toilets"
+    "type": "toilets",
+    "source": "OpenStreetMap"
   },
   {
-    "id": 1932775337,
+    "id": "osm_1932775337",
     "lat": 46.4594755,
     "lon": 6.8445405,
     "name": "Eurokey WC",
     "desc": "Ville de Vevey",
-    "type": "toilets"
+    "type": "toilets",
+    "source": "OpenStreetMap"
   },
   {
-    "id": 2138700466,
+    "id": "osm_2138700466",
     "lat": 46.9299939,
     "lon": 7.5621756,
     "name": "Eurokey WC",
     "desc": "",
-    "type": "toilets"
+    "type": "toilets",
+    "source": "OpenStreetMap"
   },
   {
-    "id": 2372626224,
+    "id": "osm_2372626224",
     "lat": 47.1412255,
     "lon": 7.2531758,
     "name": "Eurokey WC",
     "desc": "",
-    "type": "toilets"
+    "type": "toilets",
+    "source": "OpenStreetMap"
   },
   {
-    "id": 3227878205,
+    "id": "osm_3227878205",
     "lat": 47.5547656,
     "lon": 7.5889919,
     "name": "Eurokey WC",
     "desc": "",
-    "type": "toilets"
+    "type": "toilets",
+    "source": "OpenStreetMap"
   },
   {
-    "id": 3687267141,
+    "id": "osm_3687267141",
     "lat": 47.0883008,
     "lon": 7.2044231,
     "name": "Eurokey WC",
     "desc": "",
-    "type": "toilets"
+    "type": "toilets",
+    "source": "OpenStreetMap"
   },
   {
-    "id": 3806521967,
+    "id": "osm_3806521967",
     "lat": 47.5478981,
     "lon": 7.5902512,
     "name": "Eurokey WC",
     "desc": "",
-    "type": "toilets"
+    "type": "toilets",
+    "source": "OpenStreetMap"
   },
   {
-    "id": 3841174734,
+    "id": "osm_3841174734",
     "lat": 47.5486192,
     "lon": 7.5910508,
     "name": "Eurokey WC",
     "desc": "",
-    "type": "toilets"
+    "type": "toilets",
+    "source": "OpenStreetMap"
   },
   {
-    "id": 4420328787,
+    "id": "osm_4420328787",
     "lat": 47.1309939,
     "lon": 7.2419799,
     "name": "Coop Restaurant",
     "desc": "",
-    "type": "restaurant"
+    "type": "restaurant",
+    "source": "OpenStreetMap"
   },
   {
-    "id": 4809498355,
+    "id": "osm_4809498355",
     "lat": 47.1385454,
     "lon": 7.2470205,
     "name": "Coop Restaurant",
     "desc": "Coop",
-    "type": "restaurant"
+    "type": "restaurant",
+    "source": "OpenStreetMap"
   },
   {
-    "id": 4975307824,
+    "id": "osm_4975307824",
     "lat": 47.147428,
     "lon": 7.2691318,
     "name": "Eurokey WC",
     "desc": "",
-    "type": "toilets"
+    "type": "toilets",
+    "source": "OpenStreetMap"
   },
   {
-    "id": 4975806783,
+    "id": "osm_4975806783",
     "lat": 47.1443094,
     "lon": 7.2637427,
     "name": "Eurokey WC",
     "desc": "",
-    "type": "toilets"
+    "type": "toilets",
+    "source": "OpenStreetMap"
   },
   {
-    "id": 4982759623,
+    "id": "osm_4982759623",
     "lat": 47.2143759,
     "lon": 7.7844357,
     "name": "Eurokey WC Migros Aare",
     "desc": "",
-    "type": "toilets"
+    "type": "toilets",
+    "source": "OpenStreetMap"
   },
   {
-    "id": 5069527183,
+    "id": "osm_5069527183",
     "lat": 47.1314231,
     "lon": 7.2354711,
     "name": "Eurokey WC",
     "desc": "",
-    "type": "toilets"
+    "type": "toilets",
+    "source": "OpenStreetMap"
   },
   {
-    "id": 5537862014,
+    "id": "osm_5537862014",
     "lat": 47.5464379,
     "lon": 7.6912511,
     "name": "Eurokey WC",
     "desc": "",
-    "type": "toilets"
+    "type": "toilets",
+    "source": "OpenStreetMap"
   },
   {
-    "id": 5926724295,
+    "id": "osm_5926724295",
     "lat": 46.8189294,
     "lon": 7.3424101,
     "name": "Eurokey WC",
     "desc": "Schlüssel im k kiosk",
-    "type": "toilets"
+    "type": "toilets",
+    "source": "OpenStreetMap"
   },
   {
-    "id": 6810863012,
+    "id": "osm_6810863012",
     "lat": 46.7272979,
     "lon": 7.6279778,
     "name": "Eurokey WC",
     "desc": "",
-    "type": "toilets"
+    "type": "toilets",
+    "source": "OpenStreetMap"
   },
   {
-    "id": 6877659261,
+    "id": "osm_6877659261",
     "lat": 47.5459142,
     "lon": 7.587963,
     "name": "Eurokey WC",
     "desc": "",
-    "type": "toilets"
+    "type": "toilets",
+    "source": "OpenStreetMap"
   },
   {
-    "id": 6903775713,
+    "id": "osm_6903775713",
     "lat": 46.9469882,
     "lon": 7.4511774,
     "name": "Eurokey WC",
     "desc": "",
-    "type": "toilets"
+    "type": "toilets",
+    "source": "OpenStreetMap"
   },
   {
-    "id": 7296706464,
+    "id": "osm_7296706464",
     "lat": 46.1919052,
     "lon": 6.1533294,
     "name": "Eurokey WC",
     "desc": "",
-    "type": "toilets"
+    "type": "toilets",
+    "source": "OpenStreetMap"
   },
   {
-    "id": 8318072685,
+    "id": "osm_8318072685",
     "lat": 46.4710455,
     "lon": 6.8538785,
     "name": "Eurokey WC",
     "desc": "Ville de Vevey",
-    "type": "toilets"
+    "type": "toilets",
+    "source": "OpenStreetMap"
   },
   {
-    "id": 8318090977,
+    "id": "osm_8318090977",
     "lat": 46.4620328,
     "lon": 6.8360822,
     "name": "Eurokey WC",
     "desc": "Ville de Vevey",
-    "type": "toilets"
+    "type": "toilets",
+    "source": "OpenStreetMap"
   },
   {
-    "id": 8441111800,
+    "id": "osm_8441111800",
     "lat": 46.9336045,
     "lon": 7.4494531,
     "name": "Eurokey WC",
     "desc": "",
-    "type": "toilets"
+    "type": "toilets",
+    "source": "OpenStreetMap"
   },
   {
-    "id": 8461582882,
+    "id": "osm_8461582882",
     "lat": 47.5636227,
     "lon": 7.5960414,
     "name": "Eurokey WC",
     "desc": "",
-    "type": "toilets"
+    "type": "toilets",
+    "source": "OpenStreetMap"
   },
   {
-    "id": 8461617576,
+    "id": "osm_8461617576",
     "lat": 47.5705831,
     "lon": 7.5830791,
     "name": "Eurokey WC",
     "desc": "B",
-    "type": "toilets"
+    "type": "toilets",
+    "source": "OpenStreetMap"
   },
   {
-    "id": 8461625840,
+    "id": "osm_8461625840",
     "lat": 47.5638919,
     "lon": 7.6016378,
     "name": "Eurokey WC",
     "desc": "",
-    "type": "toilets"
+    "type": "toilets",
+    "source": "OpenStreetMap"
   },
   {
-    "id": 8489101387,
+    "id": "osm_8489101387",
     "lat": 46.9699946,
     "lon": 7.4970065,
     "name": "Eurokey WC",
     "desc": "",
-    "type": "toilets"
+    "type": "toilets",
+    "source": "OpenStreetMap"
   },
   {
-    "id": 8787149451,
+    "id": "osm_8787149451",
     "lat": 46.9442877,
     "lon": 7.4635751,
     "name": "Eurokey WC",
     "desc": "",
-    "type": "toilets"
+    "type": "toilets",
+    "source": "OpenStreetMap"
   },
   {
-    "id": 9248187816,
+    "id": "osm_9248187816",
     "lat": 46.923614,
     "lon": 7.4143259,
     "name": "Eurokey WC",
     "desc": "",
-    "type": "toilets"
+    "type": "toilets",
+    "source": "OpenStreetMap"
   },
   {
-    "id": 9449528459,
+    "id": "osm_9449528459",
     "lat": 46.8087125,
     "lon": 8.0272703,
     "name": "Eurokey WC",
     "desc": "",
-    "type": "toilets"
+    "type": "toilets",
+    "source": "OpenStreetMap"
   },
   {
-    "id": 9875182386,
+    "id": "osm_9875182386",
     "lat": 47.2531247,
     "lon": 7.0189194,
     "name": "Eurokey WC",
     "desc": "",
-    "type": "toilets"
+    "type": "toilets",
+    "source": "OpenStreetMap"
   },
   {
-    "id": 12878827258,
+    "id": "osm_12878827258",
     "lat": 46.6867416,
     "lon": 7.6798849,
     "name": "Eurokey WC",
     "desc": "",
-    "type": "toilets"
+    "type": "toilets",
+    "source": "OpenStreetMap"
   },
   {
-    "id": 12896581738,
+    "id": "osm_12896581738",
     "lat": 47.184124,
     "lon": 7.5560423,
     "name": "Eurokey WC",
     "desc": "RBS",
-    "type": "toilets"
+    "type": "toilets",
+    "source": "OpenStreetMap"
   },
   {
-    "id": 53641482,
+    "id": "osm_53641482",
     "lat": 47.3480318,
     "lon": 7.9108712,
     "name": "Eurokey WC",
     "desc": "",
-    "type": "toilets"
+    "type": "toilets",
+    "source": "OpenStreetMap"
   },
   {
-    "id": 83905734,
+    "id": "osm_83905734",
     "lat": 46.1903937,
     "lon": 6.1357636,
     "name": "Eurokey WC",
     "desc": "",
-    "type": "toilets"
+    "type": "toilets",
+    "source": "OpenStreetMap"
   },
   {
-    "id": 126083668,
+    "id": "osm_126083668",
     "lat": 47.5818872,
     "lon": 7.9102752,
     "name": "Eurokey WC",
     "desc": "",
-    "type": "toilets"
+    "type": "toilets",
+    "source": "OpenStreetMap"
   },
   {
-    "id": 181024524,
+    "id": "osm_181024524",
     "lat": 46.1944113,
     "lon": 6.1583235,
     "name": "Eurokey WC",
     "desc": "",
-    "type": "toilets"
+    "type": "toilets",
+    "source": "OpenStreetMap"
   },
   {
-    "id": 186053732,
+    "id": "osm_186053732",
     "lat": 46.2119661,
     "lon": 6.1392242,
     "name": "Eurokey WC",
     "desc": "",
-    "type": "toilets"
+    "type": "toilets",
+    "source": "OpenStreetMap"
   },
   {
-    "id": 241262379,
+    "id": "osm_241262379",
     "lat": 46.932186,
     "lon": 7.1188103,
     "name": "Eurokey WC",
     "desc": "",
-    "type": "toilets"
+    "type": "toilets",
+    "source": "OpenStreetMap"
   },
   {
-    "id": 427233993,
+    "id": "osm_427233993",
     "lat": 46.9289773,
     "lon": 7.4169827,
     "name": "Eurokey WC",
     "desc": "",
-    "type": "toilets"
+    "type": "toilets",
+    "source": "OpenStreetMap"
   },
   {
-    "id": 520368703,
+    "id": "osm_520368703",
     "lat": 46.9470746,
     "lon": 7.459097,
     "name": "Eurokey-Anlage",
     "desc": "",
-    "type": "elevator"
+    "type": "elevator",
+    "source": "OpenStreetMap"
   },
   {
-    "id": 560386156,
+    "id": "osm_560386156",
     "lat": 47.56313,
     "lon": 7.5886726,
     "name": "Eurokey WC",
     "desc": "",
-    "type": "toilets"
+    "type": "toilets",
+    "source": "OpenStreetMap"
   },
   {
-    "id": 679960537,
+    "id": "osm_679960537",
     "lat": 46.2048727,
     "lon": 6.1500388,
     "name": "Eurokey WC",
     "desc": "",
-    "type": "toilets"
+    "type": "toilets",
+    "source": "OpenStreetMap"
   },
   {
-    "id": 713109250,
+    "id": "osm_713109250",
     "lat": 46.8037027,
     "lon": 7.1502086,
     "name": "Eurokey-Anlage",
     "desc": "",
-    "type": "steps"
+    "type": "steps",
+    "source": "OpenStreetMap"
   },
   {
-    "id": 861202521,
+    "id": "osm_861202521",
     "lat": 47.5661094,
     "lon": 7.6078931,
     "name": "Eurokey WC",
     "desc": "",
-    "type": "toilets"
+    "type": "toilets",
+    "source": "OpenStreetMap"
   },
   {
-    "id": 911275150,
+    "id": "osm_911275150",
     "lat": 47.3946771,
     "lon": 8.0424472,
     "name": "Eurokey WC",
     "desc": "",
-    "type": "toilets"
+    "type": "toilets",
+    "source": "OpenStreetMap"
   },
   {
-    "id": 911282128,
+    "id": "osm_911282128",
     "lat": 47.563245,
     "lon": 7.5916436,
     "name": "Eurokey WC",
     "desc": "",
-    "type": "toilets"
+    "type": "toilets",
+    "source": "OpenStreetMap"
   },
   {
-    "id": 911283945,
+    "id": "osm_911283945",
     "lat": 47.5634975,
     "lon": 7.5939483,
     "name": "Eurokey WC",
     "desc": "",
-    "type": "toilets"
+    "type": "toilets",
+    "source": "OpenStreetMap"
   },
   {
-    "id": 911287003,
+    "id": "osm_911287003",
     "lat": 47.5595632,
     "lon": 7.5823186,
     "name": "Eurokey WC",
     "desc": "",
-    "type": "toilets"
+    "type": "toilets",
+    "source": "OpenStreetMap"
   },
   {
-    "id": 911296857,
+    "id": "osm_911296857",
     "lat": 47.1390684,
     "lon": 7.2476247,
     "name": "Eurokey WC",
     "desc": "",
-    "type": "toilets"
+    "type": "toilets",
+    "source": "OpenStreetMap"
   },
   {
-    "id": 913568923,
+    "id": "osm_913568923",
     "lat": 46.1993248,
     "lon": 6.1398064,
     "name": "Eurokey WC",
     "desc": "",
-    "type": "toilets"
+    "type": "toilets",
+    "source": "OpenStreetMap"
   },
   {
-    "id": 913570125,
+    "id": "osm_913570125",
     "lat": 46.2025802,
     "lon": 6.1210032,
     "name": "Eurokey WC",
     "desc": "",
-    "type": "toilets"
+    "type": "toilets",
+    "source": "OpenStreetMap"
   },
   {
-    "id": 913575531,
+    "id": "osm_913575531",
     "lat": 46.1999115,
     "lon": 6.1356086,
     "name": "Eurokey WC",
     "desc": "",
-    "type": "toilets"
+    "type": "toilets",
+    "source": "OpenStreetMap"
   },
   {
-    "id": 913576991,
+    "id": "osm_913576991",
     "lat": 46.2033981,
     "lon": 6.1501525,
     "name": "Eurokey WC",
     "desc": "",
-    "type": "toilets"
+    "type": "toilets",
+    "source": "OpenStreetMap"
   },
   {
-    "id": 913853755,
+    "id": "osm_913853755",
     "lat": 46.682777,
     "lon": 7.7027598,
     "name": "Eurokey WC",
     "desc": "",
-    "type": "toilets"
+    "type": "toilets",
+    "source": "OpenStreetMap"
   },
   {
-    "id": 1076056503,
+    "id": "osm_1076056503",
     "lat": 46.4670913,
     "lon": 6.8418329,
     "name": "Eurokey WC",
     "desc": "Ville de Vevey",
-    "type": "toilets"
+    "type": "toilets",
+    "source": "OpenStreetMap"
   },
   {
-    "id": 1136407194,
+    "id": "osm_1136407194",
     "lat": 47.1196923,
     "lon": 7.2668895,
     "name": "Centre Brügg",
     "desc": "",
-    "type": "Anlage"
+    "type": "Anlage",
+    "source": "OpenStreetMap"
   },
   {
-    "id": 1234290964,
+    "id": "osm_1234290964",
     "lat": 46.5107733,
     "lon": 6.5315268,
     "name": "Eurokey WC",
     "desc": "",
-    "type": "toilets"
+    "type": "toilets",
+    "source": "OpenStreetMap"
   },
   {
-    "id": 1251377422,
+    "id": "osm_1251377422",
     "lat": 46.9666975,
     "lon": 7.4638762,
     "name": "Eurokey WC",
     "desc": "Bei Veranstaltungen im Stade de Suisse meistens geschlossen.",
-    "type": "toilets"
+    "type": "toilets",
+    "source": "OpenStreetMap"
   },
   {
-    "id": 1320673268,
+    "id": "osm_1320673268",
     "lat": 46.2102916,
     "lon": 6.1400544,
     "name": "Eurokey WC",
     "desc": "",
-    "type": "toilets"
+    "type": "toilets",
+    "source": "OpenStreetMap"
   },
   {
-    "id": 256337975,
+    "id": "osm_256337975",
     "lat": 47.3612839,
     "lon": 8.5250424,
     "name": "Klopstockwiese",
     "desc": "ZüriWC",
-    "type": "toilets"
+    "type": "toilets",
+    "source": "OpenStreetMap"
   },
   {
-    "id": 310468239,
+    "id": "osm_310468239",
     "lat": 46.0045261,
     "lon": 8.9588412,
     "name": "Eurokey-Anlage",
     "desc": "",
-    "type": "Anlage"
+    "type": "Anlage",
+    "source": "OpenStreetMap"
   },
   {
-    "id": 342064415,
+    "id": "osm_342064415",
     "lat": 47.2373805,
     "lon": 9.5975337,
     "name": "Eurokey WC",
     "desc": "",
-    "type": "toilets"
+    "type": "toilets",
+    "source": "OpenStreetMap"
   },
   {
-    "id": 448855250,
+    "id": "osm_448855250",
     "lat": 47.3704581,
     "lon": 8.5488274,
     "name": "Heimplatz",
     "desc": "ZüriWC",
-    "type": "toilets"
+    "type": "toilets",
+    "source": "OpenStreetMap"
   },
   {
-    "id": 599156556,
+    "id": "osm_599156556",
     "lat": 47.3383242,
     "lon": 8.5304758,
     "name": "Albisstrasse",
     "desc": "ZüriWC",
-    "type": "toilets"
+    "type": "toilets",
+    "source": "OpenStreetMap"
   },
   {
-    "id": 733254723,
+    "id": "osm_733254723",
     "lat": 47.3719547,
     "lon": 8.5426233,
     "name": "Rathauswache",
     "desc": "ZüriWC",
-    "type": "toilets"
+    "type": "toilets",
+    "source": "OpenStreetMap"
   },
   {
-    "id": 804528259,
+    "id": "osm_804528259",
     "lat": 47.3748844,
     "lon": 8.5516764,
     "name": "Platte",
     "desc": "ZüriWC",
-    "type": "toilets"
+    "type": "toilets",
+    "source": "OpenStreetMap"
   },
   {
-    "id": 831887530,
+    "id": "osm_831887530",
     "lat": 47.3639622,
     "lon": 8.5663896,
     "name": "Klusplatz",
     "desc": "ZüriWC",
-    "type": "toilets"
+    "type": "toilets",
+    "source": "OpenStreetMap"
   },
   {
-    "id": 920059369,
+    "id": "osm_920059369",
     "lat": 47.7016076,
     "lon": 9.1848929,
     "name": "Eurokey WC",
     "desc": "Toilette für alle",
-    "type": "toilets"
+    "type": "toilets",
+    "source": "OpenStreetMap"
   },
   {
-    "id": 922262762,
+    "id": "osm_922262762",
     "lat": 46.2801953,
     "lon": 8.9961763,
     "name": "Eurokey WC",
     "desc": "",
-    "type": "toilets"
+    "type": "toilets",
+    "source": "OpenStreetMap"
   },
   {
-    "id": 1137668878,
+    "id": "osm_1137668878",
     "lat": 47.3585847,
     "lon": 8.5538502,
     "name": "Höschgasse",
     "desc": "ZüriWC",
-    "type": "toilets"
+    "type": "toilets",
+    "source": "OpenStreetMap"
   },
   {
-    "id": 1137672137,
+    "id": "osm_1137672137",
     "lat": 47.3979989,
     "lon": 8.5421158,
     "name": "Milchbuck",
     "desc": "ZüriWC",
-    "type": "toilets"
+    "type": "toilets",
+    "source": "OpenStreetMap"
   },
   {
-    "id": 1137681026,
+    "id": "osm_1137681026",
     "lat": 47.397332,
     "lon": 8.5963104,
     "name": "Stettbach",
     "desc": "ZüriWC",
-    "type": "toilets"
+    "type": "toilets",
+    "source": "OpenStreetMap"
   },
   {
-    "id": 1137842460,
+    "id": "osm_1137842460",
     "lat": 47.3788656,
     "lon": 8.5415669,
     "name": "Platzspitz/Walchebrücke",
     "desc": "ZüriWC",
-    "type": "toilets"
+    "type": "toilets",
+    "source": "OpenStreetMap"
   },
   {
-    "id": 1139673974,
+    "id": "osm_1139673974",
     "lat": 47.4105765,
     "lon": 8.5442369,
     "name": "Oerlikon Marktplatz",
     "desc": "ZüriWC",
-    "type": "toilets"
+    "type": "toilets",
+    "source": "OpenStreetMap"
   },
   {
-    "id": 1139674002,
+    "id": "osm_1139674002",
     "lat": 47.4117041,
     "lon": 8.5448934,
     "name": "Eurokey WC",
     "desc": "access with eurokey only",
-    "type": "toilets"
+    "type": "toilets",
+    "source": "OpenStreetMap"
   },
   {
-    "id": 1139674031,
+    "id": "osm_1139674031",
     "lat": 47.4049045,
     "lon": 8.5724593,
     "name": "Hirschen/Schwamendingen",
     "desc": "ZüriWC",
-    "type": "toilets"
+    "type": "toilets",
+    "source": "OpenStreetMap"
   },
   {
-    "id": 1151605154,
+    "id": "osm_1151605154",
     "lat": 47.3768986,
     "lon": 8.5125876,
     "name": "Fritschiwiese",
     "desc": "ZüriWC",
-    "type": "toilets"
+    "type": "toilets",
+    "source": "OpenStreetMap"
   },
   {
-    "id": 1151605231,
+    "id": "osm_1151605231",
     "lat": 47.3701283,
     "lon": 8.5139175,
     "name": "Goldbrunnenplatz",
     "desc": "ZüriWC",
-    "type": "toilets"
+    "type": "toilets",
+    "source": "OpenStreetMap"
   },
   {
-    "id": 1151605247,
+    "id": "osm_1151605247",
     "lat": 47.3678909,
     "lon": 8.4952853,
     "name": "Triemli",
     "desc": "ZüriWC",
-    "type": "toilets"
+    "type": "toilets",
+    "source": "OpenStreetMap"
   },
   {
-    "id": 1200958655,
+    "id": "osm_1200958655",
     "lat": 47.3783889,
     "lon": 8.5231398,
     "name": "Bäckeranlage",
     "desc": "ZüriWC",
-    "type": "toilets"
+    "type": "toilets",
+    "source": "OpenStreetMap"
   },
   {
-    "id": 1200958803,
+    "id": "osm_1200958803",
     "lat": 47.3786254,
     "lon": 8.5138565,
     "name": "Bullingerhof",
     "desc": "ZüriWC",
-    "type": "toilets"
+    "type": "toilets",
+    "source": "OpenStreetMap"
   },
   {
-    "id": 1200958807,
+    "id": "osm_1200958807",
     "lat": 47.387643,
     "lon": 8.4861131,
     "name": "Lindenplatz",
     "desc": "ZüriWC",
-    "type": "toilets"
+    "type": "toilets",
+    "source": "OpenStreetMap"
   },
   {
-    "id": 1200958883,
+    "id": "osm_1200958883",
     "lat": 47.3861748,
     "lon": 8.5230742,
     "name": "Josefwiese",
     "desc": "Vom Kiosk betreut; reduzierter Winterbetrieb",
-    "type": "toilets"
+    "type": "toilets",
+    "source": "OpenStreetMap"
   },
   {
-    "id": 1200958930,
+    "id": "osm_1200958930",
     "lat": 47.3748053,
     "lon": 8.5278742,
     "name": "Rotwandstrasse",
     "desc": "ZüriWC",
-    "type": "toilets"
+    "type": "toilets",
+    "source": "OpenStreetMap"
   },
   {
-    "id": 1211240719,
+    "id": "osm_1211240719",
     "lat": 47.4188281,
     "lon": 8.5067908,
     "name": "Zehntenhausplatz",
     "desc": "ZüriWC",
-    "type": "toilets"
+    "type": "toilets",
+    "source": "OpenStreetMap"
   },
   {
-    "id": 1319950173,
+    "id": "osm_1319950173",
     "lat": 47.3454853,
     "lon": 8.5353987,
     "name": "Bachstrasse",
     "desc": "ZüriWC",
-    "type": "toilets"
+    "type": "toilets",
+    "source": "OpenStreetMap"
   },
   {
-    "id": 1319962745,
+    "id": "osm_1319962745",
     "lat": 47.3846638,
     "lon": 8.5317282,
     "name": "Limmatplatz",
     "desc": "ZüriWC",
-    "type": "toilets"
+    "type": "toilets",
+    "source": "OpenStreetMap"
   },
   {
-    "id": 1319978184,
+    "id": "osm_1319978184",
     "lat": 47.3818672,
     "lon": 8.5715613,
     "name": "Allmend Fluntern/Zoo",
     "desc": "ZüriWC",
-    "type": "toilets"
+    "type": "toilets",
+    "source": "OpenStreetMap"
   },
   {
-    "id": 1319978219,
+    "id": "osm_1319978219",
     "lat": 47.3684696,
     "lon": 8.5603651,
     "name": "Römerhof",
     "desc": "ZüriWC",
-    "type": "toilets"
+    "type": "toilets",
+    "source": "OpenStreetMap"
   },
   {
-    "id": 1377865897,
+    "id": "osm_1377865897",
     "lat": 47.6596001,
     "lon": 9.1773753,
     "name": "Eurokey WC",
     "desc": "Kultur-Rädle",
-    "type": "toilets"
+    "type": "toilets",
+    "source": "OpenStreetMap"
   },
   {
-    "id": 1416484753,
+    "id": "osm_1416484753",
     "lat": 47.3649495,
     "lon": 8.5540703,
     "name": "Kreuzplatz",
     "desc": "ZüriWC",
-    "type": "toilets"
+    "type": "toilets",
+    "source": "OpenStreetMap"
   },
   {
-    "id": 1699631647,
+    "id": "osm_1699631647",
     "lat": 47.3702476,
     "lon": 8.519084,
     "name": "Schmiede Wiedikon",
     "desc": "ZüriWC",
-    "type": "toilets"
+    "type": "toilets",
+    "source": "OpenStreetMap"
   },
   {
-    "id": 1740683849,
+    "id": "osm_1740683849",
     "lat": 47.3656987,
     "lon": 8.5467886,
     "name": "Parkhaus Opéra",
     "desc": "Cafe Collana",
-    "type": "toilets"
+    "type": "toilets",
+    "source": "OpenStreetMap"
   },
   {
-    "id": 1831341037,
+    "id": "osm_1831341037",
     "lat": 47.3797112,
     "lon": 8.5099762,
     "name": "Hardaupark",
     "desc": "ZüriWC",
-    "type": "toilets"
+    "type": "toilets",
+    "source": "OpenStreetMap"
   },
   {
-    "id": 1887589498,
+    "id": "osm_1887589498",
     "lat": 47.3613961,
     "lon": 8.5475297,
     "name": "Bad Utoquai",
     "desc": "ZüriWC",
-    "type": "toilets"
+    "type": "toilets",
+    "source": "OpenStreetMap"
   },
   {
-    "id": 1891363274,
+    "id": "osm_1891363274",
     "lat": 47.3899109,
     "lon": 8.5235263,
     "name": "Escher-Wyss-Platz",
     "desc": "ZüriWC",
-    "type": "toilets"
+    "type": "toilets",
+    "source": "OpenStreetMap"
   },
   {
-    "id": 1917929359,
+    "id": "osm_1917929359",
     "lat": 47.4147456,
     "lon": 8.5377397,
     "name": "Oerlikerpark",
     "desc": "ZüriWC",
-    "type": "toilets"
+    "type": "toilets",
+    "source": "OpenStreetMap"
   },
   {
-    "id": 1917981985,
+    "id": "osm_1917981985",
     "lat": 47.3922228,
     "lon": 8.4892124,
     "name": "Bahnhof Altstetten/Vulkanplatz",
     "desc": "ZüriWC",
-    "type": "Anlage"
+    "type": "Anlage",
+    "source": "OpenStreetMap"
   },
   {
-    "id": 1918000381,
+    "id": "osm_1918000381",
     "lat": 47.3670452,
     "lon": 8.5235669,
     "name": "Sihlhölzli",
     "desc": "ZüriWC",
-    "type": "toilets"
+    "type": "toilets",
+    "source": "OpenStreetMap"
   },
   {
-    "id": 2095399894,
+    "id": "osm_2095399894",
     "lat": 47.4121004,
     "lon": 8.4836501,
     "name": "Rütihof",
     "desc": "Mit Eurokey 24h zugänglich",
-    "type": "toilets"
+    "type": "toilets",
+    "source": "OpenStreetMap"
   },
   {
-    "id": 2296798035,
+    "id": "osm_2296798035",
     "lat": 47.4201264,
     "lon": 8.6191988,
     "name": "Eurokey WC",
     "desc": "",
-    "type": "toilets"
+    "type": "toilets",
+    "source": "OpenStreetMap"
   },
   {
-    "id": 2329264499,
+    "id": "osm_2329264499",
     "lat": 47.4180096,
     "lon": 8.5566279,
     "name": "Leutschenpark",
     "desc": "ZüriWC",
-    "type": "toilets"
+    "type": "toilets",
+    "source": "OpenStreetMap"
   },
   {
-    "id": 2919116057,
+    "id": "osm_2919116057",
     "lat": 47.3735062,
     "lon": 8.5409101,
     "name": "Urania",
     "desc": "ZüriWC",
-    "type": "toilets"
+    "type": "toilets",
+    "source": "OpenStreetMap"
   },
   {
-    "id": 3263740453,
+    "id": "osm_3263740453",
     "lat": 46.870976,
     "lon": 8.2387026,
     "name": "Eurokey WC",
     "desc": "",
-    "type": "toilets"
+    "type": "toilets",
+    "source": "OpenStreetMap"
   },
   {
-    "id": 3442306393,
+    "id": "osm_3442306393",
     "lat": 47.3582777,
     "lon": 8.571844,
     "name": "Burgwies",
     "desc": "ZüriWC",
-    "type": "toilets"
+    "type": "toilets",
+    "source": "OpenStreetMap"
   },
   {
-    "id": 3653699172,
+    "id": "osm_3653699172",
     "lat": 47.3883574,
     "lon": 8.5127125,
     "name": "Pfingstweid",
     "desc": "Mit Eurokey 24h zugänglich",
-    "type": "toilets"
+    "type": "toilets",
+    "source": "OpenStreetMap"
   },
   {
-    "id": 4323468595,
+    "id": "osm_4323468595",
     "lat": 46.9936044,
     "lon": 8.6049682,
     "name": "Eurokey WC",
     "desc": "",
-    "type": "toilets"
+    "type": "toilets",
+    "source": "OpenStreetMap"
   },
   {
-    "id": 4330448389,
+    "id": "osm_4330448389",
     "lat": 47.3522171,
     "lon": 8.5071154,
     "name": "Albisgütli",
     "desc": "ZüriWC",
-    "type": "toilets"
+    "type": "toilets",
+    "source": "OpenStreetMap"
   },
   {
-    "id": 4419205867,
+    "id": "osm_4419205867",
     "lat": 47.4222508,
     "lon": 9.3690956,
     "name": "Eurokey WC",
     "desc": "Access *only* with Eurokey",
-    "type": "toilets"
+    "type": "toilets",
+    "source": "OpenStreetMap"
   },
   {
-    "id": 4833061591,
+    "id": "osm_4833061591",
     "lat": 47.3788188,
     "lon": 8.536052,
     "name": "Eurokey WC",
     "desc": "",
-    "type": "toilets"
+    "type": "toilets",
+    "source": "OpenStreetMap"
   },
   {
-    "id": 4851815304,
+    "id": "osm_4851815304",
     "lat": 47.3659132,
     "lon": 8.5548048,
     "name": "Artergut",
     "desc": "ZüriWC",
-    "type": "toilets"
+    "type": "toilets",
+    "source": "OpenStreetMap"
   },
   {
-    "id": 4851815305,
+    "id": "osm_4851815305",
     "lat": 47.366805,
     "lon": 8.5450097,
     "name": "Bellevue",
     "desc": "ZüriWC",
-    "type": "toilets"
+    "type": "toilets",
+    "source": "OpenStreetMap"
   },
   {
-    "id": 4851815307,
+    "id": "osm_4851815307",
     "lat": 47.3767839,
     "lon": 8.544701,
     "name": "Central",
     "desc": "ZüriWC",
-    "type": "toilets"
+    "type": "toilets",
+    "source": "OpenStreetMap"
   },
   {
-    "id": 4851815308,
+    "id": "osm_4851815308",
     "lat": 47.3855088,
     "lon": 8.540165,
     "name": "Beckenhof",
     "desc": "An die Öffnungszeiten des Parks gebunden",
-    "type": "toilets"
+    "type": "toilets",
+    "source": "OpenStreetMap"
   },
   {
-    "id": 4851815316,
+    "id": "osm_4851815316",
     "lat": 47.398944,
     "lon": 8.5349611,
     "name": "Buchegg GZ",
     "desc": "ZüriWC",
-    "type": "toilets"
+    "type": "toilets",
+    "source": "OpenStreetMap"
   },
   {
-    "id": 4851815319,
+    "id": "osm_4851815319",
     "lat": 47.402215,
     "lon": 8.4995179,
     "name": "Meierhofplatz",
     "desc": "ZüriWC",
-    "type": "toilets"
+    "type": "toilets",
+    "source": "OpenStreetMap"
   },
   {
-    "id": 4851815320,
+    "id": "osm_4851815320",
     "lat": 47.3508271,
     "lon": 8.5832764,
     "name": "Rehalp",
     "desc": "ZüriWC",
-    "type": "toilets"
+    "type": "toilets",
+    "source": "OpenStreetMap"
   },
   {
-    "id": 4851815721,
+    "id": "osm_4851815721",
     "lat": 47.3800114,
     "lon": 8.4865055,
     "name": "Bachwiesen",
     "desc": "ZüriWC",
-    "type": "toilets"
+    "type": "toilets",
+    "source": "OpenStreetMap"
   },
   {
-    "id": 4851815723,
+    "id": "osm_4851815723",
     "lat": 47.3922161,
     "lon": 8.489247,
     "name": "Bahnhof Altstetten/Vulkanplatz",
     "desc": "ZüriWC",
-    "type": "toilets"
+    "type": "toilets",
+    "source": "OpenStreetMap"
   },
   {
-    "id": 4851815729,
+    "id": "osm_4851815729",
     "lat": 47.3853822,
     "lon": 8.5170333,
     "name": "Bahnhof Hardbrücke",
     "desc": "Im Untergrund beim Kiosk; an die Betriebszeiten des Bahnhofs gebunden",
-    "type": "toilets"
+    "type": "toilets",
+    "source": "OpenStreetMap"
   },
   {
-    "id": 4851815730,
+    "id": "osm_4851815730",
     "lat": 47.3846786,
     "lon": 8.5317705,
     "name": "Limmatplatz",
     "desc": "ZüriWC",
-    "type": "toilets"
+    "type": "toilets",
+    "source": "OpenStreetMap"
   },
   {
-    "id": 4851815735,
+    "id": "osm_4851815735",
     "lat": 47.3763393,
     "lon": 8.5357638,
     "name": "Gessnerallee",
     "desc": "An die Öffnungszeiten der Rio Bar gebunden",
-    "type": "toilets"
+    "type": "toilets",
+    "source": "OpenStreetMap"
   },
   {
-    "id": 4851815736,
+    "id": "osm_4851815736",
     "lat": 47.3769499,
     "lon": 8.5406663,
     "name": "ShopVille",
     "desc": "Das WC befindet sich unterirdisch zw. Ausgang Bahnhofstrasse und Ausgang Bahnhofquai",
-    "type": "toilets"
+    "type": "toilets",
+    "source": "OpenStreetMap"
   },
   {
-    "id": 4851815743,
+    "id": "osm_4851815743",
     "lat": 47.3660106,
     "lon": 8.5404229,
     "name": "Bürklisteg",
     "desc": "ZüriWC",
-    "type": "toilets"
+    "type": "toilets",
+    "source": "OpenStreetMap"
   },
   {
-    "id": 4851815745,
+    "id": "osm_4851815745",
     "lat": 47.3744066,
     "lon": 8.4846476,
     "name": "Albisrieden Pünt",
     "desc": "ZüriWC",
-    "type": "toilets"
+    "type": "toilets",
+    "source": "OpenStreetMap"
   },
   {
-    "id": 4851815752,
+    "id": "osm_4851815752",
     "lat": 47.375582,
     "lon": 8.517733,
     "name": "Lochergut",
     "desc": "ZüriWC",
-    "type": "toilets"
+    "type": "toilets",
+    "source": "OpenStreetMap"
   },
   {
-    "id": 4851815753,
+    "id": "osm_4851815753",
     "lat": 47.3783783,
     "lon": 8.5231725,
     "name": "Bäckeranlage",
     "desc": "ZüriWC",
-    "type": "toilets"
+    "type": "toilets",
+    "source": "OpenStreetMap"
   },
   {
-    "id": 4851815770,
+    "id": "osm_4851815770",
     "lat": 47.3626931,
     "lon": 8.518541,
     "name": "Binz",
     "desc": "ZüriWC",
-    "type": "toilets"
+    "type": "toilets",
+    "source": "OpenStreetMap"
   },
   {
-    "id": 4851815774,
+    "id": "osm_4851815774",
     "lat": 47.3612754,
     "lon": 8.5355652,
     "name": "Hafen Enge",
     "desc": "ZüriWC",
-    "type": "toilets"
+    "type": "toilets",
+    "source": "OpenStreetMap"
   },
   {
-    "id": 4862087981,
+    "id": "osm_4862087981",
     "lat": 47.4117099,
     "lon": 8.5426979,
     "name": "Max-Frisch-Platz",
     "desc": "ZüriWC",
-    "type": "toilets"
+    "type": "toilets",
+    "source": "OpenStreetMap"
   },
   {
-    "id": 4862088014,
+    "id": "osm_4862088014",
     "lat": 47.358411,
     "lon": 8.5865007,
     "name": "Witikon Zentrum",
     "desc": "ZüriWC",
-    "type": "toilets"
+    "type": "toilets",
+    "source": "OpenStreetMap"
   },
   {
-    "id": 4862088017,
+    "id": "osm_4862088017",
     "lat": 47.36086,
     "lon": 8.5587806,
     "name": "Neumünster",
     "desc": "ZüriWC",
-    "type": "toilets"
+    "type": "toilets",
+    "source": "OpenStreetMap"
   },
   {
-    "id": 4862088018,
+    "id": "osm_4862088018",
     "lat": 47.3581884,
     "lon": 8.5477543,
     "name": "WC Hafen Riesbach",
     "desc": "ZüriWC",
-    "type": "toilets"
+    "type": "toilets",
+    "source": "OpenStreetMap"
   },
   {
-    "id": 4862088226,
+    "id": "osm_4862088226",
     "lat": 47.3541209,
     "lon": 8.5524423,
     "name": "Zürichhorn",
     "desc": "ZüriWC",
-    "type": "toilets"
+    "type": "toilets",
+    "source": "OpenStreetMap"
   },
   {
-    "id": 4946044489,
+    "id": "osm_4946044489",
     "lat": 47.3573958,
     "lon": 8.4376937,
     "name": "WC Bahnhof Birmensdorf",
     "desc": "",
-    "type": "toilets"
+    "type": "toilets",
+    "source": "OpenStreetMap"
   },
   {
-    "id": 5046756255,
+    "id": "osm_5046756255",
     "lat": 46.0032924,
     "lon": 8.9618869,
     "name": "Eurokey WC",
     "desc": "",
-    "type": "toilets"
+    "type": "toilets",
+    "source": "OpenStreetMap"
   },
   {
-    "id": 5133734195,
+    "id": "osm_5133734195",
     "lat": 47.3827652,
     "lon": 8.5149488,
     "name": "Hardplatz",
     "desc": "ZüriWC",
-    "type": "toilets"
+    "type": "toilets",
+    "source": "OpenStreetMap"
   },
   {
-    "id": 5185653643,
+    "id": "osm_5185653643",
     "lat": 47.0491361,
     "lon": 8.5478365,
     "name": "WC Rigi-Bahnen Goldau",
     "desc": "Rigi Bahn",
-    "type": "toilets"
+    "type": "toilets",
+    "source": "OpenStreetMap"
   },
   {
-    "id": 5283725451,
+    "id": "osm_5283725451",
     "lat": 47.3738162,
     "lon": 8.5295021,
     "name": "Stauffacher",
     "desc": "ZüriWC",
-    "type": "toilets"
+    "type": "toilets",
+    "source": "OpenStreetMap"
   },
   {
-    "id": 5777426961,
+    "id": "osm_5777426961",
     "lat": 47.0252467,
     "lon": 8.9445802,
     "name": "Eurokey WC",
     "desc": "",
-    "type": "toilets"
+    "type": "toilets",
+    "source": "OpenStreetMap"
   },
   {
-    "id": 6111663676,
+    "id": "osm_6111663676",
     "lat": 47.54428,
     "lon": 9.6810434,
     "name": "Eurokey WC",
     "desc": "Lindau Hbf",
-    "type": "toilets"
+    "type": "toilets",
+    "source": "OpenStreetMap"
   },
   {
-    "id": 6296217944,
+    "id": "osm_6296217944",
     "lat": 47.7016651,
     "lon": 9.1849807,
     "name": "Toilette für alle",
     "desc": "Insel Mainau",
-    "type": "toilets"
+    "type": "toilets",
+    "source": "OpenStreetMap"
   },
   {
-    "id": 6761451230,
+    "id": "osm_6761451230",
     "lat": 47.3737943,
     "lon": 8.5115428,
     "name": "Aemtlerwiese",
     "desc": "ZüriWC",
-    "type": "toilets"
+    "type": "toilets",
+    "source": "OpenStreetMap"
   },
   {
-    "id": 7066386229,
+    "id": "osm_7066386229",
     "lat": 47.5037075,
     "lon": 8.727397,
     "name": "Eurokey WC",
     "desc": "",
-    "type": "toilets"
+    "type": "toilets",
+    "source": "OpenStreetMap"
   },
   {
-    "id": 8486341109,
+    "id": "osm_8486341109",
     "lat": 46.858409,
     "lon": 9.5286241,
     "name": "Eurokey WC",
     "desc": "",
-    "type": "toilets"
+    "type": "toilets",
+    "source": "OpenStreetMap"
   },
   {
-    "id": 8504122966,
+    "id": "osm_8504122966",
     "lat": 47.0343478,
     "lon": 9.0133355,
     "name": "Eurokey WC",
     "desc": "",
-    "type": "toilets"
+    "type": "toilets",
+    "source": "OpenStreetMap"
   },
   {
-    "id": 9504725617,
+    "id": "osm_9504725617",
     "lat": 47.2292588,
     "lon": 8.6752286,
     "name": "Eurokey WC",
     "desc": "",
-    "type": "toilets"
+    "type": "toilets",
+    "source": "OpenStreetMap"
   },
   {
-    "id": 9908224708,
+    "id": "osm_9908224708",
     "lat": 47.0246344,
     "lon": 8.9439132,
     "name": "Eurokey WC",
     "desc": "",
-    "type": "toilets"
+    "type": "toilets",
+    "source": "OpenStreetMap"
   },
   {
-    "id": 11119811151,
+    "id": "osm_11119811151",
     "lat": 47.3861258,
     "lon": 8.5375165,
     "name": "Eurokey WC",
     "desc": "",
-    "type": "toilets"
+    "type": "toilets",
+    "source": "OpenStreetMap"
   },
   {
-    "id": 11782250821,
+    "id": "osm_11782250821",
     "lat": 47.3684283,
     "lon": 8.52237,
     "name": "Aegerten",
     "desc": "ZüriWC",
-    "type": "toilets"
+    "type": "toilets",
+    "source": "OpenStreetMap"
   },
   {
-    "id": 11782250822,
+    "id": "osm_11782250822",
     "lat": 47.3686063,
     "lon": 8.5191199,
     "name": "Kollerwiese",
     "desc": "ZüriWC",
-    "type": "toilets"
+    "type": "toilets",
+    "source": "OpenStreetMap"
   },
   {
-    "id": 11999487668,
+    "id": "osm_11999487668",
     "lat": 47.1756237,
     "lon": 8.5073671,
     "name": "Eurokey WC",
     "desc": "",
-    "type": "toilets"
+    "type": "toilets",
+    "source": "OpenStreetMap"
   },
   {
-    "id": 13058565133,
+    "id": "osm_13058565133",
     "lat": 47.6530443,
     "lon": 9.4730746,
     "name": "Eurokey WC",
     "desc": "",
-    "type": "toilets"
+    "type": "toilets",
+    "source": "OpenStreetMap"
   },
   {
-    "id": 49714303,
+    "id": "osm_49714303",
     "lat": 47.6040713,
     "lon": 8.5438104,
     "name": "Eurokey WC",
     "desc": "",
-    "type": "toilets"
+    "type": "toilets",
+    "source": "OpenStreetMap"
   },
   {
-    "id": 80905201,
+    "id": "osm_80905201",
     "lat": 47.422814,
     "lon": 8.654455,
     "name": "Eurokey WC",
     "desc": "Modern stainless steel WCs ;)",
-    "type": "toilets"
+    "type": "toilets",
+    "source": "OpenStreetMap"
   },
   {
-    "id": 115435875,
+    "id": "osm_115435875",
     "lat": 47.5001666,
     "lon": 8.730937,
     "name": "Elypse am Graben",
     "desc": "",
-    "type": "toilets"
+    "type": "toilets",
+    "source": "OpenStreetMap"
   },
   {
-    "id": 117188911,
+    "id": "osm_117188911",
     "lat": 47.3849277,
     "lon": 8.5477367,
     "name": "Rigiplatz",
     "desc": "ZüriWC",
-    "type": "toilets"
+    "type": "toilets",
+    "source": "OpenStreetMap"
   },
   {
-    "id": 172277783,
+    "id": "osm_172277783",
     "lat": 47.3434326,
     "lon": 8.5305186,
     "name": "Morgental",
     "desc": "ZüriWC",
-    "type": "toilets"
+    "type": "toilets",
+    "source": "OpenStreetMap"
   },
   {
-    "id": 241700973,
+    "id": "osm_241700973",
     "lat": 46.9572972,
     "lon": 9.5488013,
     "name": "Eurokey WC",
     "desc": "",
-    "type": "toilets"
+    "type": "toilets",
+    "source": "OpenStreetMap"
   },
   {
-    "id": 319681277,
+    "id": "osm_319681277",
     "lat": 47.3917866,
     "lon": 8.5384397,
     "name": "Schaffhauserplatz",
     "desc": "ZüriWC",
-    "type": "toilets"
+    "type": "toilets",
+    "source": "OpenStreetMap"
   },
   {
-    "id": 325859830,
+    "id": "osm_325859830",
     "lat": 47.3755225,
     "lon": 8.5381239,
     "name": "Pestalozziwiese",
     "desc": "ZüriWC",
-    "type": "toilets"
+    "type": "toilets",
+    "source": "OpenStreetMap"
   },
   {
-    "id": 485217173,
+    "id": "osm_485217173",
     "lat": 47.6258717,
     "lon": 8.5671597,
     "name": "Eurokey WC",
     "desc": "SBB",
-    "type": "toilets"
+    "type": "toilets",
+    "source": "OpenStreetMap"
   },
   {
-    "id": 493253453,
+    "id": "osm_493253453",
     "lat": 47.3690003,
     "lon": 8.5419329,
     "name": "Münsterhof/Stadthausquai",
     "desc": "ZüriWC",
-    "type": "toilets"
+    "type": "toilets",
+    "source": "OpenStreetMap"
   },
   {
-    "id": 493253454,
+    "id": "osm_493253454",
     "lat": 47.3779606,
     "lon": 8.5100082,
     "name": "Albisriederplatz",
     "desc": "ZüriWC",
-    "type": "toilets"
+    "type": "toilets",
+    "source": "OpenStreetMap"
   },
   {
-    "id": 494447780,
+    "id": "osm_494447780",
     "lat": 47.4217516,
     "lon": 8.5496915,
     "name": "Seebach",
     "desc": "ZüriWC",
-    "type": "toilets"
+    "type": "toilets",
+    "source": "OpenStreetMap"
   },
   {
-    "id": 494447794,
+    "id": "osm_494447794",
     "lat": 47.4031238,
     "lon": 8.5908532,
     "name": "Hirzenbach",
     "desc": "ZüriWC",
-    "type": "toilets"
+    "type": "toilets",
+    "source": "OpenStreetMap"
   },
   {
-    "id": 620188977,
+    "id": "osm_620188977",
     "lat": 47.3980265,
     "lon": 8.5329344,
     "name": "Eurokey WC",
     "desc": "Züri WC",
-    "type": "toilets"
+    "type": "toilets",
+    "source": "OpenStreetMap"
   },
   {
-    "id": 729375811,
+    "id": "osm_729375811",
     "lat": 47.1968554,
     "lon": 8.483956,
     "name": "Eurokey WC",
     "desc": "",
-    "type": "toilets"
+    "type": "toilets",
+    "source": "OpenStreetMap"
   },
   {
-    "id": 913559234,
+    "id": "osm_913559234",
     "lat": 46.8632753,
     "lon": 9.5129986,
     "name": "Eurokey WC",
     "desc": "",
-    "type": "toilets"
+    "type": "toilets",
+    "source": "OpenStreetMap"
   },
   {
-    "id": 913559920,
+    "id": "osm_913559920",
     "lat": 46.8545781,
     "lon": 9.5229371,
     "name": "Eurokey WC",
     "desc": "",
-    "type": "toilets"
+    "type": "toilets",
+    "source": "OpenStreetMap"
   },
   {
-    "id": 913565570,
+    "id": "osm_913565570",
     "lat": 47.3059133,
     "lon": 8.5912999,
     "name": "Eurokey WC",
     "desc": "",
-    "type": "toilets"
+    "type": "toilets",
+    "source": "OpenStreetMap"
   },
   {
-    "id": 913567329,
+    "id": "osm_913567329",
     "lat": 47.4849298,
     "lon": 8.5285179,
     "name": "WC-Anlagen PP 90",
     "desc": "",
-    "type": "toilets"
+    "type": "toilets",
+    "source": "OpenStreetMap"
   },
   {
-    "id": 913842174,
+    "id": "osm_913842174",
     "lat": 46.9432654,
     "lon": 10.3584425,
     "name": "Eurokey WC",
     "desc": "",
-    "type": "toilets"
+    "type": "toilets",
+    "source": "OpenStreetMap"
   },
   {
-    "id": 913842793,
+    "id": "osm_913842793",
     "lat": 46.9455184,
     "lon": 10.3621764,
     "name": "Eurokey WC",
     "desc": "",
-    "type": "toilets"
+    "type": "toilets",
+    "source": "OpenStreetMap"
   },
   {
-    "id": 913843537,
+    "id": "osm_913843537",
     "lat": 46.9426921,
     "lon": 10.3621419,
     "name": "Eurokey WC",
     "desc": "",
-    "type": "toilets"
+    "type": "toilets",
+    "source": "OpenStreetMap"
   },
   {
-    "id": 1097118899,
+    "id": "osm_1097118899",
     "lat": 47.7587983,
     "lon": 8.8403804,
     "name": "Eurokey WC",
     "desc": "",
-    "type": "toilets"
+    "type": "toilets",
+    "source": "OpenStreetMap"
   }
 ]
