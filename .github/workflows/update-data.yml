@@ -1,0 +1,31 @@
+name: Update Eurokey Data
+
+on:
+  schedule:
+    # Läuft jeden Tag um 03:00 Uhr UTC
+    - cron: '0 3 * * *'
+  # Erlaubt das manuelle Ausführen per Mausklick
+  workflow_dispatch:
+
+jobs:
+  update-data:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Repository auschecken
+        uses: actions/checkout@v4
+
+      - name: Python einrichten
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: Overpass-Daten abrufen
+        run: python fetch_data.py
+
+      - name: data.json committen und pushen
+        run: |
+          git config --local user.name "github-actions[bot]"
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git add data.json
+          git diff --quiet && git diff --staged --quiet || (git commit -m "Auto-Update: data.json aktualisiert" && git push)
