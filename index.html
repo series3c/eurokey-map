@@ -34,12 +34,11 @@
 </head>
 <body>
 
-<div id="status">Lade Eurokey-Standorte...</div>
+<div id="status">Lade lokale Daten...</div>
 <div id="map"></div>
 
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script>
-  // Kartenansicht zentriert auf die Schweiz
   const map = L.map('map').setView([46.8182, 8.2275], 8);
 
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -49,40 +48,26 @@
 
   const statusEl = document.getElementById('status');
 
-  // Overpass QL: Bounding Box Schweiz (Süd, West, Nord, Ost)
-  const ql = '[out:json][timeout:25];(node["eurokey"="yes"](45.81,5.95,47.81,10.50);way["eurokey"="yes"](45.81,5.95,47.81,10.50););out center;';
-  const apiUrl = 'https://overpass-api.de/api/interpreter?data=' + encodeURIComponent(ql);
-
-  fetch(apiUrl)
+  // Lädt die vorkompilierte data.json direkt aus dem Repository
+  fetch('./data.json')
     .then(res => {
-      if (!res.ok) throw new Error('Status ' + res.status);
+      if (!res.ok) throw new Error('data.json konnte nicht geladen werden.');
       return res.json();
     })
-    .then(data => {
-      let count = 0;
-      (data.elements || []).forEach(el => {
-        const lat = el.lat || (el.center && el.center.lat);
-        const lon = el.lon || (el.center && el.center.lon);
-        if (lat && lon) {
-          count++;
-          const tags = el.tags || {};
-          const name = tags.name || (tags.amenity === 'toilets' ? 'Eurokey WC' : 'Eurokey-Anlage');
-          const desc = tags.description || tags.operator || '';
-          const typ = tags.amenity || tags.highway || 'Anlage';
-          
-          L.marker([lat, lon])
-            .addTo(map)
-            .bindPopup(`<b>${name}</b><br>${desc}<br><small>Typ: ${typ}</small>`);
-        }
+    .then(items => {
+      items.forEach(el => {
+        L.marker([el.lat, el.lon])
+          .addTo(map)
+          .bindPopup(`<b>${el.name}</b><br>${el.desc}<br><small>Typ: ${el.type}</small>`);
       });
-      statusEl.innerText = `${count} Eurokey-Standorte geladen`;
+      statusEl.innerText = `${items.length} Eurokey-Standorte geladen`;
     })
     .catch(err => {
       console.error(err);
-      statusEl.innerText = 'Fehler beim Laden (API ausgelastet)';
+      statusEl.innerText = 'Fehler beim Laden der Standorte.';
     });
 
-  // GPS optional abfragen (blockiert nichts, falls abgelehnt)
+  // Optionales GPS – Karte bleibt auch ohne Freigabe voll nutzbar
   map.locate({setView: true, maxZoom: 13});
   map.on('locationfound', (e) => {
     L.circleMarker(e.latlng, { radius: 7, color: '#0078FF', fillColor: '#0078FF', fillOpacity: 0.9 })
@@ -90,7 +75,7 @@
       .bindPopup("Dein Standort");
   });
   map.on('locationerror', () => {
-    // Falls blockiert: bleibt still auf Schweiz-Ansicht
+    // Bleibt standardmässig auf Schweizer Übersicht
   });
 </script>
 </body>
