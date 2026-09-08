@@ -1,6 +1,43 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Eurokey Finder CH</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      width: 100%;
+      font-family: sans-serif;
+    }
+    #map {
+      height: 100%;
+      width: 100%;
+    }
+    #status {
+      position: absolute;
+      top: 10px;
+      left: 50px;
+      z-index: 1000;
+      background: rgba(255, 255, 255, 0.9);
+      padding: 8px 14px;
+      border-radius: 6px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+      font-size: 14px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+<div id="status">Lade Standorte...</div>
+<div id="map"></div>
+
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script>
-  // Standard-Ansicht: Schweiz-Zentrum
   const map = L.map('map').setView([46.8182, 8.2275], 8);
 
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -10,7 +47,6 @@
 
   const statusEl = document.getElementById('status');
 
-  // 1. Standorte unabhängig von GPS immer sofort laden
   const query = `
     [out:json][timeout:30];
     (
@@ -32,11 +68,12 @@
       const lon = el.lon || (el.center && el.center.lon);
       if (lat && lon) {
         count++;
-        const name = el.tags.name || (el.tags.amenity === 'toilets' ? 'Eurokey WC' : 'Eurokey-Anlage');
-        const desc = el.tags.description || el.tags.operator || '';
+        const name = (el.tags && el.tags.name) || (el.tags && el.tags.amenity === 'toilets' ? 'Eurokey WC' : 'Eurokey-Anlage');
+        const desc = (el.tags && (el.tags.description || el.tags.operator)) || '';
+        const typ = (el.tags && (el.tags.amenity || el.tags.highway)) || 'Unbekannt';
         L.marker([lat, lon])
           .addTo(map)
-          .bindPopup(`<b>${name}</b><br>${desc}<br><small>Typ: ${el.tags.amenity || el.tags.highway || 'Unbekannt'}</small>`);
+          .bindPopup(`<b>${name}</b><br>${desc}<br><small>Typ: ${typ}</small>`);
       }
     });
     statusEl.innerText = `${count} Eurokey-Standorte geladen`;
@@ -46,17 +83,15 @@
     console.error(err);
   });
 
-  // 2. GPS nur als optionales Extra behandeln
   map.locate({setView: true, maxZoom: 14});
-  
   map.on('locationfound', (e) => {
     L.circleMarker(e.latlng, { radius: 8, color: '#0078FF', fillColor: '#0078FF', fillOpacity: 0.8 })
       .addTo(map)
       .bindPopup("Dein Standort");
   });
-
   map.on('locationerror', () => {
-    // Falls blockiert oder abgelehnt: Bleibt einfach auf Schweiz-Übersicht
-    console.log("Standortzugriff nicht gewährt – Standardansicht bleibt aktiv.");
+    console.log("Standortzugriff nicht gewährt.");
   });
 </script>
+</body>
+</html>
