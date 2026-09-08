@@ -38,13 +38,12 @@
       .bindPopup("Dein Standort");
   });
 
-  // Schweizer Overpass API
+// Schweizer Bounding Box Abfrage
   const query = `
-    [out:json][timeout:25];
-    area["ISO3166-1"="CH"]->.ch;
+    [out:json][timeout:30];
     (
-      node["eurokey"="yes"](area.ch);
-      way["eurokey"="yes"](area.ch);
+      node["eurokey"="yes"](45.81,5.95,47.81,10.50);
+      way["eurokey"="yes"](45.81,5.95,47.81,10.50);
     );
     out center;
   `;
