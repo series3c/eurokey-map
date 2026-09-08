@@ -22,8 +22,19 @@ def fetch_bbox(bbox):
     query = f"""
     [out:json][timeout:60];
     (
+      // 1. Offizieller Standard-Tag
+      node["centralkey"="eurokey"]({bbox});
+      way["centralkey"="eurokey"]({bbox});
+      
+      // 2. Spezifischer Toiletten-Tag
+      node["toilets:centralkey"="eurokey"]({bbox});
+      way["toilets:centralkey"="eurokey"]({bbox});
+
+      // 3. Alternative und barrierefreie Tags
       node["eurokey"="yes"]({bbox});
       way["eurokey"="yes"]({bbox});
+      node["wheelchair:eurokey"="yes"]({bbox});
+      way["wheelchair:eurokey"="yes"]({bbox});
     );
     out center;
     """
