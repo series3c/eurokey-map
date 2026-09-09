@@ -1,4 +1,5 @@
 import os
+import json
 from flask import jsonify, request
 import subprocess
 import time
@@ -15,35 +16,124 @@ HTML_TEMPLATE = """
   <title>Eurokey Admin & Log</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
+    * { box-sizing: border-box; }
     body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, monospace;
-      background: #1e1e1e;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: #17181c;
       color: #ddd;
       margin: 0;
-      padding: 16px;
+      padding: 20px;
     }
     .container {
-      max-width: 900px;
+      max-width: 1000px;
       margin: 0 auto;
     }
-    h1 {
-      font-size: 20px;
-      margin-bottom: 12px;
-      color: #fff;
+    .admin-header {
       display: flex;
       align-items: center;
       justify-content: space-between;
+      margin-bottom: 18px;
     }
-    .status-badge {
+    .admin-header-title {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .admin-header h1 {
+      font-size: 20px;
+      margin: 0;
+      color: #fff;
+      font-weight: 700;
+    }
+    .header-link {
+      color: #4da3ff;
+      text-decoration: none;
       font-size: 13px;
+      font-weight: 600;
+    }
+    .header-link:hover { text-decoration: underline; }
+    .status-badge {
+      font-size: 12px;
       padding: 4px 10px;
-      border-radius: 4px;
+      border-radius: 20px;
       font-weight: bold;
     }
     .active { background: #2e7d32; color: #fff; }
-    .inactive { background: #555; color: #ccc; }
+    .inactive { background: #444; color: #ccc; }
+
+    .tab-nav {
+      display: flex;
+      gap: 4px;
+      border-bottom: 1px solid #2e2f36;
+      margin-bottom: 20px;
+      overflow-x: auto;
+    }
+    .tab-btn {
+      background: transparent;
+      border: none;
+      border-bottom: 2px solid transparent;
+      color: #999;
+      padding: 10px 14px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      white-space: nowrap;
+      border-radius: 0;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .tab-btn:hover { color: #ddd; }
+    .tab-btn.active {
+      color: #fff;
+      border-bottom-color: #007acc;
+    }
+    .tab-badge {
+      background: #d97706;
+      color: #fff;
+      font-size: 11px;
+      font-weight: bold;
+      padding: 1px 6px;
+      border-radius: 10px;
+    }
+    .tab-panel h2 {
+      font-size: 15px;
+      font-weight: 600;
+      margin: 0 0 12px 0;
+      color: #fff;
+    }
+    .card {
+      background: #1e1f25;
+      border: 1px solid #2e2f36;
+      border-radius: 10px;
+    }
+
+    .stat-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 12px;
+      margin-bottom: 8px;
+    }
+    .stat-card {
+      background: #1e1f25;
+      border: 1px solid #2e2f36;
+      border-radius: 10px;
+      padding: 16px;
+    }
+    .stat-value {
+      font-size: 26px;
+      font-weight: 700;
+      color: #fff;
+    }
+    .stat-label {
+      font-size: 12px;
+      color: #999;
+      margin-top: 4px;
+    }
+
     .controls {
       display: flex;
+      flex-wrap: wrap;
       gap: 10px;
       margin-bottom: 14px;
     }
@@ -102,56 +192,91 @@ HTML_TEMPLATE = """
       white-space: pre-wrap;
       word-break: break-all;
     }
-    .nav-links {
-      margin-top: 12px;
+    .table-wrap {
+      overflow-x: auto;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
       font-size: 13px;
+      text-align: left;
+      color: #ccc;
     }
-    .nav-links a {
-      color: #4da3ff;
-      text-decoration: none;
+    thead tr {
+      background: #23242b;
+      border-bottom: 1px solid #2e2f36;
+      color: #999;
     }
+    th { padding: 10px; }
+    tbody tr { border-bottom: 1px solid #2e2f36; }
+    td { padding: 8px 10px; }
   </style>
 </head>
 <body>
 <div class="container">
-  <h1>
-    Eurokey Datenabruf Job-Steuerung
-    <span id="statusBadge" class="status-badge inactive">Prüfe Status...</span>
-  </h1>
+  <header class="admin-header">
+    <div class="admin-header-title">
+      <h1>Eurokey Admin</h1>
+      <span id="statusBadge" class="status-badge inactive">Prüfe Status...</span>
+    </div>
+    <a href="/" target="_blank" class="header-link">Zur Karte ↗</a>
+  </header>
 
-  <div class="controls">
-    <button id="startBtn" class="btn-start" onclick="triggerJob('start')">▶ Job jetzt starten</button>
-    <button id="stopBtn" class="btn-stop" onclick="triggerJob('stop')">⏹ Job abbrechen</button>
-    <button class="btn-clear" onclick="clearLog()">Log leeren</button>
-  </div>
+  <nav class="tab-nav">
+    <button class="tab-btn active" data-tab="dashboard">📊 Übersicht</button>
+    <button class="tab-btn" data-tab="fetch">🔄 Datenabruf</button>
+    <button class="tab-btn" data-tab="submissions">📍 Standort-Vorschläge <span class="tab-badge" id="pendingBadge" hidden>0</span></button>
+    <button class="tab-btn" data-tab="reports">⚠️ Community-Meldungen</button>
+  </nav>
 
-  <div class="progress-container">
-    <div id="progressBar" class="progress-bar"></div>
-    <div id="progressLabel" class="progress-label">Bereit</div>
-  </div>
+  <section id="tab-dashboard" class="tab-panel">
+    <div class="stat-grid">
+      <div class="stat-card">
+        <div class="stat-value" id="statTotal">–</div>
+        <div class="stat-label">Standorte gesamt</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value" id="statPending">–</div>
+        <div class="stat-label">Offene Vorschläge</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value" id="statReports">–</div>
+        <div class="stat-label">Aktive Meldungen</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value" id="statUpdated" style="font-size: 14px;">–</div>
+        <div class="stat-label">Letzter Datenabruf</div>
+      </div>
+    </div>
+  </section>
 
-  <div id="logBox">Lade Logs...</div>
+  <section id="tab-fetch" class="tab-panel" hidden>
+    <div class="controls">
+      <button id="startBtn" class="btn-start" onclick="triggerJob('start')">▶ Job jetzt starten</button>
+      <button id="stopBtn" class="btn-stop" onclick="triggerJob('stop')">⏹ Job abbrechen</button>
+      <button class="btn-clear" onclick="clearLog()">Log leeren</button>
+    </div>
+    <div class="progress-container">
+      <div id="progressBar" class="progress-bar"></div>
+      <div id="progressLabel" class="progress-label">Bereit</div>
+    </div>
+    <div id="logBox">Lade Logs...</div>
+  </section>
 
-  <div class="nav-links">
-    <a href="/" target="_blank">Zur Karte ↗</a>
-  </div>
-</div>
-
-  <!-- Neue Standort-Vorschlaege -->
-  <div style="margin-top: 35px;">
-    <h2 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 12px; color: #fff;">Neue Standort-Vorschläge</h2>
-    <div style="background: #1e1e1e; border: 1px solid #333; border-radius: 8px; overflow-x: auto;">
-      <table style="width: 100%; border-collapse: collapse; font-size: 13px; text-align: left; color: #ccc;">
+  <section id="tab-submissions" class="tab-panel" hidden>
+    <h2>Neue Standort-Vorschläge</h2>
+    <div class="card table-wrap">
+      <table>
         <thead>
-          <tr style="background: #252525; border-bottom: 1px solid #333; color: #aaa;">
-            <th style="padding: 10px;">ID</th>
-            <th style="padding: 10px;">Name</th>
-            <th style="padding: 10px;">Typ</th>
-            <th style="padding: 10px;">Adresse</th>
-            <th style="padding: 10px;">Koordinaten</th>
-            <th style="padding: 10px;">Status</th>
-            <th style="padding: 10px;">Erstellt am</th>
-            <th style="padding: 10px;">Aktion</th>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Typ</th>
+            <th>Adresse</th>
+            <th>Koordinaten</th>
+            <th>Status</th>
+            <th>Erstellt am</th>
+            <th>Aktion</th>
           </tr>
         </thead>
         <tbody id="submissionsTableBody">
@@ -159,22 +284,21 @@ HTML_TEMPLATE = """
         </tbody>
       </table>
     </div>
-  </div>
+  </section>
 
-  <!-- Meldungen Tabelle -->
-  <div style="margin-top: 35px;">
-    <h2 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 12px; color: #fff;">Aktive Community-Meldungen</h2>
-    <div style="background: #1e1e1e; border: 1px solid #333; border-radius: 8px; overflow-x: auto;">
-      <table style="width: 100%; border-collapse: collapse; font-size: 13px; text-align: left; color: #ccc;">
+  <section id="tab-reports" class="tab-panel" hidden>
+    <h2>Aktive Community-Meldungen</h2>
+    <div class="card table-wrap">
+      <table>
         <thead>
-          <tr style="background: #252525; border-bottom: 1px solid #333; color: #aaa; user-select: none;">
-            <th onclick="sortTable('id')" style="padding: 10px; cursor: pointer;">ID <span id="sort_id">▼</span></th>
-            <th onclick="sortTable('poi_id')" style="padding: 10px; cursor: pointer;">POI-ID <span id="sort_poi_id" style="color: #666;">⇅</span></th>
-            <th onclick="sortTable('issue_type')" style="padding: 10px; cursor: pointer;">Status <span id="sort_issue_type" style="color: #666;">⇅</span></th>
-            <th onclick="sortTable('created_at')" style="padding: 10px; cursor: pointer;">Erstellt am <span id="sort_created_at" style="color: #666;">⇅</span></th>
-            <th onclick="sortTable('expires_at')" style="padding: 10px; cursor: pointer;">Gültig bis <span id="sort_expires_at" style="color: #666;">⇅</span></th>
-            <th onclick="sortTable('client_ip')" style="padding: 10px; cursor: pointer;">IP <span id="sort_client_ip" style="color: #666;">⇅</span></th>
-            <th style="padding: 10px;">Aktion</th>
+          <tr style="user-select: none;">
+            <th onclick="sortTable('id')" style="cursor: pointer;">ID <span id="sort_id">▼</span></th>
+            <th onclick="sortTable('poi_id')" style="cursor: pointer;">POI-ID <span id="sort_poi_id" style="color: #666;">⇅</span></th>
+            <th onclick="sortTable('issue_type')" style="cursor: pointer;">Status <span id="sort_issue_type" style="color: #666;">⇅</span></th>
+            <th onclick="sortTable('created_at')" style="cursor: pointer;">Erstellt am <span id="sort_created_at" style="color: #666;">⇅</span></th>
+            <th onclick="sortTable('expires_at')" style="cursor: pointer;">Gültig bis <span id="sort_expires_at" style="color: #666;">⇅</span></th>
+            <th onclick="sortTable('client_ip')" style="cursor: pointer;">IP <span id="sort_client_ip" style="color: #666;">⇅</span></th>
+            <th>Aktion</th>
           </tr>
         </thead>
         <tbody id="reportsTableBody">
@@ -182,9 +306,45 @@ HTML_TEMPLATE = """
         </tbody>
       </table>
     </div>
-  </div>
+  </section>
+</div>
 
 <script>
+  // --- Tab-Navigation ---
+  document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.tab-panel').forEach(p => p.hidden = true);
+      btn.classList.add('active');
+      document.getElementById('tab-' + btn.dataset.tab).hidden = false;
+    });
+  });
+
+  // --- Dashboard-Statistiken ---
+  function loadStats() {
+    fetch('/admin/stats')
+      .then(r => r.json())
+      .then(d => {
+        document.getElementById('statTotal').innerText = d.total_locations;
+        document.getElementById('statPending').innerText = d.pending_submissions;
+        document.getElementById('statReports').innerText = d.active_reports;
+        document.getElementById('statUpdated').innerText = d.data_last_modified
+          ? new Date(d.data_last_modified * 1000).toLocaleString('de-CH', { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' })
+          : '–';
+
+        const badge = document.getElementById('pendingBadge');
+        if (d.pending_submissions > 0) {
+          badge.innerText = d.pending_submissions;
+          badge.hidden = false;
+        } else {
+          badge.hidden = true;
+        }
+      })
+      .catch(err => console.error('Stats fetch error:', err));
+  }
+  loadStats();
+  setInterval(loadStats, 5000);
+
   const logBox = document.getElementById('logBox');
   const badge = document.getElementById('statusBadge');
   const startBtn = document.getElementById('startBtn');
@@ -670,6 +830,35 @@ def get_community_locations():
             'source': 'community'
         })
     return jsonify(result)
+
+@app.route('/admin/stats')
+def admin_stats():
+    total_locations = 0
+    data_last_modified = None
+    data_path = os.path.join(WORKDIR, 'data.json')
+    try:
+        with open(data_path, 'r', encoding='utf-8') as f:
+            total_locations = len(json.load(f))
+        data_last_modified = os.path.getmtime(data_path)
+    except Exception:
+        pass
+
+    conn = get_db()
+    c = conn.cursor()
+    c.execute("SELECT COUNT(*) FROM submissions WHERE status = 'pending'")
+    pending_submissions = c.fetchone()[0]
+
+    now = datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S")
+    c.execute("SELECT COUNT(*) FROM reports WHERE expires_at > ?", (now,))
+    active_reports = c.fetchone()[0]
+    conn.close()
+
+    return jsonify({
+        'total_locations': total_locations,
+        'pending_submissions': pending_submissions,
+        'active_reports': active_reports,
+        'data_last_modified': data_last_modified
+    })
 
 @app.route('/admin/submissions-list')
 def admin_submissions_list():

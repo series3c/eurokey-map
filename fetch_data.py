@@ -192,6 +192,8 @@ try:
 
         cleaned_data.append({
             'id': item_id,
+            'osm_id': el_id,
+            'osm_type': el.get('type', 'node'),
             'lat': lat,
             'lon': lon,
             'name': poi_name,
@@ -199,6 +201,8 @@ try:
             'address': address,
             'opening_hours': tags.get('opening_hours', ''),
             'fee': tags.get('fee', '') or tags.get('charge', ''),
+            'charge': tags.get('charge', ''),
+            'fee_centralkey': tags.get('fee:centralkey', ''),
             'level': tags.get('level', ''),
             'desc': tags.get('description', ''),
             'type': poi_type

@@ -206,6 +206,32 @@
     .add-location-btn:hover {
       background: #143172;
     }
+    .dev-mode-toggle {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      color: #666;
+      cursor: pointer;
+      user-select: none;
+    }
+    .dev-mode-toggle input {
+      cursor: pointer;
+    }
+    .osm-dev-link {
+      display: inline-block;
+      margin-top: 6px;
+      font-size: 11px;
+      color: #7c3aed;
+      text-decoration: none;
+      background: #f3e8ff;
+      padding: 3px 8px;
+      border-radius: 4px;
+      font-family: monospace;
+    }
+    .osm-dev-link:hover {
+      text-decoration: underline;
+    }
     #placingBanner {
       display: none;
       position: fixed;
@@ -308,6 +334,9 @@
     <div id="counter" class="info-counter">Lade Standorte...</div>
     <div id="dataTimestamp" style="font-size: 10px; color: #777; text-align: center;"></div>
     <button id="addLocationBtn" class="add-location-btn">+ Neuen Standort vorschlagen</button>
+    <label class="dev-mode-toggle">
+      <input type="checkbox" id="devModeToggle"> 🛠️ Dev-Modus
+    </label>
     <a href="#" id="disclaimerLink" class="disclaimer-link">Hinweise & Disclaimer</a>
   </div>
 </div>
@@ -409,6 +438,17 @@
     });
   }
 
+  // --- Developer-Modus ---
+  let devMode = false;
+  try { devMode = localStorage.getItem('eurokeyDevMode') === '1'; } catch (e) {}
+
+  const devModeToggle = document.getElementById('devModeToggle');
+  devModeToggle.checked = devMode;
+  devModeToggle.addEventListener('change', function() {
+    devMode = this.checked;
+    try { localStorage.setItem('eurokeyDevMode', devMode ? '1' : '0'); } catch (e) {}
+  });
+
   const map = L.map('map').setView([46.8182, 8.2275], 8);
 
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -480,12 +520,24 @@
     return res.replace(/"/g, '').trim();
   }
 
-  function translateFee(fee) {
-    if (!fee) return '';
-    const f = fee.trim().toLowerCase();
-    if (f === 'yes') return 'Kostenpflichtig';
-    if (f === 'no') return 'Kostenlos';
-    return translateText(fee);
+  // Beruecksichtigt fee:centralkey=no (kostenlos fuer Eurokey-Nutzer, auch wenn fee=yes fuer die Allgemeinheit gilt)
+  function formatFeeInfo(item) {
+    const fee = (item.fee || '').trim().toLowerCase();
+    const chargeText = item.charge ? translateText(item.charge) : '';
+    const freeWithKey = (item.fee_centralkey || '').trim().toLowerCase() === 'no';
+
+    if (freeWithKey) {
+      if (fee === 'yes') {
+        return `Kostenlos mit Eurokey${chargeText ? ' (sonst ' + chargeText + ')' : ' (sonst kostenpflichtig)'}`;
+      }
+      return 'Kostenlos mit Eurokey';
+    }
+
+    if (fee === 'yes') {
+      return chargeText ? `Kostenpflichtig (${chargeText})` : 'Kostenpflichtig';
+    }
+    if (fee === 'no') return 'Kostenlos';
+    return translateText(item.fee);
   }
 
   const svgs = {
@@ -615,8 +667,8 @@
     if (item.opening_hours) {
       html += `<div class="popup-row">🕒 <span><strong>Öffnungszeiten:</strong> ${translateText(item.opening_hours)}</span></div>`;
     }
-    if (item.fee) {
-      html += `<div class="popup-row">🪙 <span><strong>Gebühr:</strong> ${translateFee(item.fee)}</span></div>`;
+    if (item.fee || item.fee_centralkey) {
+      html += `<div class="popup-row">🪙 <span><strong>Gebühr:</strong> ${formatFeeInfo(item)}</span></div>`;
     }
     if (item.level) {
       html += `<div class="popup-row">📶 <span><strong>Ebene:</strong> ${item.level}</span></div>`;
@@ -634,7 +686,16 @@
 
     const navUrl = `https://www.google.com/maps/dir/?api=1&destination=${item.lat},${item.lon}`;
     html += `<div><a class="route-btn" href="${navUrl}" target="_blank" rel="noopener">🧭 Route berechnen</a></div>`;
-    
+
+    if (devMode) {
+      if (item.osm_id && item.osm_type) {
+        const osmUrl = `https://www.openstreetmap.org/${item.osm_type}/${item.osm_id}`;
+        html += `<div><a class="osm-dev-link" href="${osmUrl}" target="_blank" rel="noopener">🔧 OSM: ${item.osm_type}/${item.osm_id}</a></div>`;
+      } else {
+        html += `<div><span class="osm-dev-link" style="color:#888;background:#f3f4f6;">🔧 Kein OSM-Objekt (${item.source === 'community' ? 'Community-Eintrag' : 'unbekannt'})</span></div>`;
+      }
+    }
+
 
     const poiId = String(item.id || (item.lat + "_" + item.lon));
     const poiReps = (window.currentReports && window.currentReports[poiId]) ? window.currentReports[poiId] : {};
