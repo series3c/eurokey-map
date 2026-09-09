@@ -4,6 +4,9 @@ import urllib.parse
 import time
 import os
 import sys
+import math
+
+import opendata_sources
 
 SERVERS = [
     "https://overpass.osm.ch/api/interpreter",
@@ -93,6 +96,31 @@ def reverse_geocode_nominatim(lat, lon):
     except Exception:
         pass
     return ""
+
+def haversine_m(lat1, lon1, lat2, lon2):
+    r = 6371000
+    p1, p2 = math.radians(lat1), math.radians(lat2)
+    dp = math.radians(lat2 - lat1)
+    dl = math.radians(lon2 - lon1)
+    a = math.sin(dp / 2) ** 2 + math.cos(p1) * math.cos(p2) * math.sin(dl / 2) ** 2
+    return 2 * r * math.asin(math.sqrt(a))
+
+
+def merge_opendata(existing_items, log=print):
+    """Ergaenzt amtliche Open-Data-Standorte, die nicht schon (naeherungsweise)
+    an derselben Stelle aus OSM vorhanden sind."""
+    opendata_items = opendata_sources.fetch_all(log=log)
+    added = []
+    for item in opendata_items:
+        is_duplicate = any(
+            haversine_m(item['lat'], item['lon'], existing['lat'], existing['lon']) < 30
+            for existing in existing_items
+        )
+        if not is_duplicate:
+            added.append(item)
+    log(f"Open-Data gesamt: {len(opendata_items)} Standorte, davon {len(added)} neu (kein OSM-Duplikat < 30m).")
+    return added
+
 
 def determine_type_and_name(tags):
     highway = tags.get('highway', '')
@@ -211,6 +239,10 @@ try:
         # Fortschrittsbalken aktualisieren
         elapsed = time.time() - start_time
         suffix_text = f"({idx}/{total_count}) [Neu: {new_nominatim_lookups}]"
+
+    # 3. Amtliche Open-Data-Quellen ergaenzen (Zuerich, Genf, Basel-Stadt, Luzern)
+    print("Rufe amtliche Open-Data-Quellen ab...")
+    cleaned_data.extend(merge_opendata(cleaned_data))
 
     with open('data.json', 'w', encoding='utf-8') as f:
         json.dump(cleaned_data, f, ensure_ascii=False, indent=2)

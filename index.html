@@ -683,6 +683,9 @@
     if (item.source === 'community') {
       html += `<div><span class="popup-badge" style="background:#fef3c7;color:#92400e;">Community-Eintrag</span></div>`;
     }
+    if (item.source === 'opendata') {
+      html += `<div><span class="popup-badge" style="background:#dbeafe;color:#1e40af;">Amtliche Daten</span></div>`;
+    }
 
     const navUrl = `https://www.google.com/maps/dir/?api=1&destination=${item.lat},${item.lon}`;
     html += `<div><a class="route-btn" href="${navUrl}" target="_blank" rel="noopener">🧭 Route berechnen</a></div>`;
@@ -692,7 +695,10 @@
         const osmUrl = `https://www.openstreetmap.org/${item.osm_type}/${item.osm_id}`;
         html += `<div><a class="osm-dev-link" href="${osmUrl}" target="_blank" rel="noopener">🔧 OSM: ${item.osm_type}/${item.osm_id}</a></div>`;
       } else {
-        html += `<div><span class="osm-dev-link" style="color:#888;background:#f3f4f6;">🔧 Kein OSM-Objekt (${item.source === 'community' ? 'Community-Eintrag' : 'unbekannt'})</span></div>`;
+        let originLabel = 'unbekannt';
+        if (item.source === 'community') originLabel = 'Community-Eintrag';
+        else if (item.source === 'opendata') originLabel = 'amtliche Open-Data-Quelle';
+        html += `<div><span class="osm-dev-link" style="color:#888;background:#f3f4f6;">🔧 Kein OSM-Objekt (${originLabel})</span></div>`;
       }
     }
 
