@@ -1382,7 +1382,7 @@
     "osm_type": "node",
     "lat": 46.0045261,
     "lon": 8.9588412,
-    "name": "Eurokey WC",
+    "name": "Eurokey Zugang",
     "operator": "",
     "address": "Viale Carlo Cattaneo, 6932 Lugano",
     "opening_hours": "",
@@ -1391,7 +1391,7 @@
     "fee_centralkey": "",
     "level": "",
     "desc": "",
-    "type": "toilets"
+    "type": "door"
   },
   {
     "id": "osm_342064415",

@@ -134,6 +134,18 @@ def determine_type_and_name(tags):
     elif wheelchair == 'platform_lift':
         poi_type = 'platform_lift'
         poi_name = name or 'Hebebühne / Treppenlift'
+    elif amenity == 'shower':
+        poi_type = 'shower'
+        poi_name = name or 'Eurokey Dusche'
+    elif amenity == 'changing_room':
+        poi_type = 'changing_room'
+        poi_name = name or 'Eurokey Umkleide'
+    elif amenity == 'toilets':
+        poi_type = 'toilets'
+        poi_name = name or 'Eurokey WC'
+    elif tags.get('barrier') or tags.get('door') or tags.get('entrance'):
+        poi_type = 'door'
+        poi_name = name or 'Eurokey Zugang'
     else:
         poi_type = 'toilets'
         poi_name = name or 'Eurokey WC'
