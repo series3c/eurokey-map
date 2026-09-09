@@ -2,81 +2,883 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Eurokey Finder CH</title>
+  <title>Eurokey Standorte Schweiz</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Leaflet CSS -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <!-- Leaflet MarkerCluster CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+
   <style>
-    html, body {
+    body {
       margin: 0;
       padding: 0;
-      height: 100%;
-      width: 100%;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     }
     #map {
-      height: 100%;
+      height: 100vh;
+      height: 100dvh;
       width: 100%;
     }
-    #status {
+    .top-panel {
       position: absolute;
       top: 12px;
-      left: 60px;
+      right: 12px;
       z-index: 1000;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      max-width: 280px;
+    }
+    .panel-card {
       background: rgba(255, 255, 255, 0.95);
-      padding: 8px 14px;
+      padding: 10px 12px;
       border-radius: 8px;
       box-shadow: 0 2px 8px rgba(0,0,0,0.25);
-      font-size: 13px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .search-box input {
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      padding: 6px 10px;
+      font-size: 14px;
+      outline: none;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    .search-box input:focus {
+      border-color: #00205b;
+    }
+    .filter-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+    }
+    .filter-btn {
+      padding: 4px 8px;
+      border: 1px solid #00205b;
+      background: white;
+      color: #00205b;
+      border-radius: 4px;
+      font-size: 11px;
+      font-weight: 600;
+      cursor: pointer;
+      text-align: center;
+      transition: background 0.15s, color 0.15s;
+    }
+    .filter-btn:hover {
+      background: #f0f4f8;
+    }
+    .filter-btn.active {
+      background: #00205b;
+      color: white;
+    }
+    .info-counter {
+      font-size: 12px;
       font-weight: 600;
       color: #333;
+      text-align: right;
+    }
+
+    /* Signaletik Pin-Basis */
+    .eurokey-pin {
+      background-color: #00205b;
+      border: 2px solid #ffffff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.4);
+    }
+    .eurokey-pin svg {
+      width: 20px;
+      height: 20px;
+      fill: #ffffff;
+    }
+
+    /* Pop-up Styling */
+    .popup-title {
+      font-size: 15px;
+      font-weight: bold;
+      margin-bottom: 6px;
+      color: #111;
+    }
+    .popup-row {
+      margin: 4px 0;
+      font-size: 13px;
+      color: #444;
+      display: flex;
+      align-items: flex-start;
+      gap: 6px;
+    }
+    .popup-badge {
+      display: inline-block;
+      background: #e8eaf6;
+      color: #00205b;
+      border-radius: 4px;
+      padding: 2px 6px;
+      font-size: 11px;
+      font-weight: bold;
+      margin-top: 6px;
+    }
+    .route-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 8px;
+      text-decoration: none;
+      color: #00205b;
+      font-weight: bold;
+      font-size: 13px;
+    }
+    .route-btn:hover {
+      text-decoration: underline;
+    }
+      /* Disclaimer Modal */
+    .disclaimer-link {
+      font-size: 11px;
+      color: #666;
+      text-align: center;
+      text-decoration: none;
+      margin-top: 4px;
+      display: block;
+    }
+    .disclaimer-link:hover {
+      text-decoration: underline;
+      color: #00205b;
+    }
+    .modal-backdrop {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 2000;
+      align-items: center;
+      justify-content: center;
+    }
+    .modal-content {
+      background: #fff;
+      padding: 20px 24px;
+      border-radius: 8px;
+      max-width: 480px;
+      width: 90%;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+      position: relative;
+      font-size: 13px;
+      line-height: 1.5;
+      color: #333;
+    }
+    .modal-content h3 {
+      margin-top: 0;
+      color: #00205b;
+    }
+    .modal-close-btn {
+      position: absolute;
+      top: 12px;
+      right: 14px;
+      border: none;
+      background: none;
+      font-size: 20px;
+      cursor: pointer;
+      color: #888;
+    }
+    .modal-close-btn:hover {
+      color: #000;
+    }
+    .add-location-btn {
+      background: #00205b;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      padding: 8px 10px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      width: 100%;
+    }
+    .add-location-btn:hover {
+      background: #143172;
+    }
+    #placingBanner {
+      display: none;
+      position: fixed;
+      top: 12px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #00205b;
+      color: #fff;
+      padding: 8px 16px;
+      border-radius: 6px;
+      font-size: 13px;
+      z-index: 1500;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+    }
+    #placingBanner button {
+      margin-left: 10px;
+      background: rgba(255,255,255,0.2);
+      border: none;
+      color: #fff;
+      border-radius: 4px;
+      padding: 3px 8px;
+      cursor: pointer;
+      font-size: 12px;
+    }
+    .map-placing #map {
+      cursor: crosshair;
+    }
+    .map-placing .leaflet-marker-pane,
+    .map-placing .leaflet-popup-pane {
+      pointer-events: none;
+    }
+    .form-row {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+      margin-bottom: 10px;
+    }
+    .form-row label {
+      font-size: 12px;
+      font-weight: 600;
+      color: #333;
+    }
+    .form-row input, .form-row select, .form-row textarea {
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      padding: 6px 8px;
+      font-size: 13px;
+      font-family: inherit;
+    }
+    .form-actions {
+      display: flex;
+      gap: 8px;
+      margin-top: 14px;
+    }
+    .form-actions button {
+      flex: 1;
+      padding: 9px;
+      border: none;
+      border-radius: 4px;
+      font-weight: 600;
+      cursor: pointer;
+      font-size: 13px;
+    }
+    .btn-submit { background: #00205b; color: #fff; }
+    .btn-cancel { background: #eee; color: #333; }
+
+    .locate-btn-control button {
+      width: 40px;
+      height: 40px;
+      background: #fff;
+      border: none;
+      border-radius: 50%;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+      cursor: pointer;
+      font-size: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+      margin-right: 4px;
+    }
+    .locate-btn-control button:hover {
+      background: #f0f4f8;
+    }
+    .locate-btn-control button.locating {
+      opacity: 0.6;
     }
   </style>
 </head>
 <body>
 
-<div id="status">Lade lokale Daten...</div>
 <div id="map"></div>
 
+<div class="top-panel">
+  <div class="panel-card">
+    <div class="search-box">
+      <input type="text" id="searchInput" placeholder="Suche (Ort, Strasse)..." />
+    </div>
+    <div id="filterContainer" class="filter-group"></div>
+    <div id="counter" class="info-counter">Lade Standorte...</div>
+    <div id="dataTimestamp" style="font-size: 10px; color: #777; text-align: center;"></div>
+    <button id="addLocationBtn" class="add-location-btn">+ Neuen Standort vorschlagen</button>
+    <a href="#" id="disclaimerLink" class="disclaimer-link">Hinweise & Disclaimer</a>
+  </div>
+</div>
+
+<div id="placingBanner">
+  📍 Klicke auf die Karte, um den Standort zu setzen
+  <button id="cancelPlacingBtn">Abbrechen</button>
+</div>
+
+<div id="addLocationModal" class="modal-backdrop">
+  <div class="modal-content">
+    <button class="modal-close-btn" id="closeAddModalBtn">&times;</button>
+    <h3>Neuen Standort vorschlagen</h3>
+    <p style="font-size: 12px; color: #666; margin-top: -8px;">Koordinaten: <span id="pendingCoords"></span></p>
+    <form id="addLocationForm">
+      <input type="text" name="website" id="addLocationHp" style="display:none;" tabindex="-1" autocomplete="off">
+      <div class="form-row">
+        <label for="addName">Name (optional)</label>
+        <input type="text" id="addName" maxlength="200">
+      </div>
+      <div class="form-row">
+        <label for="addType">Typ *</label>
+        <select id="addType" required>
+          <option value="toilets">WC</option>
+          <option value="elevator">Lift</option>
+          <option value="platform_lift">Hebebühne</option>
+          <option value="shower">Dusche</option>
+          <option value="changing_room">Umkleide</option>
+          <option value="door">Tür / Barriere</option>
+        </select>
+      </div>
+      <div class="form-row">
+        <label for="addAddress">Adresse (optional)</label>
+        <input type="text" id="addAddress" maxlength="300">
+      </div>
+      <div class="form-row">
+        <label for="addOpeningHours">Öffnungszeiten (optional)</label>
+        <input type="text" id="addOpeningHours" maxlength="200" placeholder="z. B. 24/7">
+      </div>
+      <div class="form-row">
+        <label for="addFee">Gebühr (optional)</label>
+        <input type="text" id="addFee" maxlength="100" placeholder="z. B. kostenlos">
+      </div>
+      <div class="form-row">
+        <label for="addDesc">Bemerkung (optional)</label>
+        <textarea id="addDesc" maxlength="500" rows="2"></textarea>
+      </div>
+      <div class="form-actions">
+        <button type="button" class="btn-cancel" id="cancelAddFormBtn">Abbrechen</button>
+        <button type="submit" class="btn-submit">Vorschlag senden</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+
+<div id="disclaimerModal" class="modal-backdrop">
+  <div class="modal-content">
+    <button class="modal-close-btn" id="closeModalBtn">&times;</button>
+    <h3>Hinweise & Disclaimer</h3>
+    <p><strong>Keine Gewähr:</strong> Alle Daten zu den Eurokey-Standorten werden nach bestem Wissen bereitgestellt. Es wird keine Gewähr für die tatsächliche Zugänglichkeit, Funktionstüchtigkeit oder Vollständigkeit der Anlagen übernommen.</p>
+    <p><strong>Datenquellen:</strong> Die Daten basieren im Wesentlichen auf frei zugänglichen Einträgen von OpenStreetMap (OSM) sowie eigenen Ergänzungen.</p>
+    <p><strong>Schlüssel:</strong> Zur Nutzung der Anlagen vor Ort ist ein physischer Eurokey erforderlich. Diese Plattform ist ein privates Projekt und steht in keiner offiziellen Verbindung zur Vergabestelle.</p>
+    <hr style="border: none; border-top: 1px solid #eee; margin: 16px 0;">
+    <h4 style="margin: 0 0 8px 0; color: #00205b;">Daten ergänzen & korrigieren</h4>
+    <p>Fehlt ein Standort oder stimmen Angaben nicht? Da diese Karte auf <strong>OpenStreetMap (OSM)</strong> basiert, können Änderungen direkt dort vorgenommen werden und fließen beim nächsten Datenabgleich automatisch hier ein:</p>
+    <ul style="padding-left: 18px; margin: 0 0 8px 0;">
+      <li style="margin-bottom: 8px;"><strong>Option 1 (Ohne Account):</strong> Auf <a href="https://www.openstreetmap.org" target="_blank" rel="noopener" style="color: #00205b;">openstreetmap.org</a> rechts in der Leiste auf das <strong>Sprechblasen-Symbol mit Plus</strong> klicken. Einen Hinweis für andere Mapper an der Stelle platzieren (z. B. <em>Eurokey vorhanden</em>).</li>
+      <li><strong>Option 2 (Direkt selbst eintragen):</strong> Kostenlos auf <a href="https://www.openstreetmap.org" target="_blank" rel="noopener" style="color: #00205b;">openstreetmap.org</a> anmelden, oben links auf <strong>«Bearbeiten»</strong> klicken und beim Objekt das Tag <code>centralkey=eurokey</code> ergänzen.</li>
+    </ul>
+  </div>
+</div>
+
+<!-- Leaflet JS & Plugins -->
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
+
 <script>
+    // Disclaimer Modal Steuerung
+  const modal = document.getElementById("disclaimerModal");
+  const link = document.getElementById("disclaimerLink");
+  const closeBtn = document.getElementById("closeModalBtn");
+
+  if (link && modal && closeBtn) {
+    link.addEventListener("click", (e) => {
+      e.preventDefault();
+      modal.style.display = "flex";
+    });
+    closeBtn.addEventListener("click", () => {
+      modal.style.display = "none";
+    });
+    modal.addEventListener("click", (e) => {
+      if (e.target === modal) modal.style.display = "none";
+    });
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && modal.style.display === "flex") {
+        modal.style.display = "none";
+      }
+    });
+  }
+
   const map = L.map('map').setView([46.8182, 8.2275], 8);
 
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 19,
-    attribution: '© OpenStreetMap'
+    attribution: '&copy; OpenStreetMap Mitwirkende'
   }).addTo(map);
 
-  const statusEl = document.getElementById('status');
+  const typeLabels = {
+    'all': 'Alle',
+    'toilets': 'WC',
+    'elevator': 'Lifte',
+    'platform_lift': 'Hebebühnen',
+    'shower': 'Duschen',
+    'changing_room': 'Umkleiden',
+    'door': 'Türen / Barrieren'
+  };
 
-  // Lädt die vorkompilierte data.json direkt aus dem Repository
-  fetch('./data.json')
-    .then(res => {
-      if (!res.ok) throw new Error('data.json konnte nicht geladen werden.');
-      return res.json();
-    })
-    .then(items => {
-      items.forEach(el => {
-        L.marker([el.lat, el.lon])
-          .addTo(map)
-          .bindPopup(`<b>${el.name}</b><br>${el.desc}<br><small>Typ: ${el.type}</small>`);
+  // Allgemeines Übersetzungs-Wörterbuch für OSM-Freitexte und Zeitangaben
+  const textDict = [
+    // Phrasen
+    [/\bopen with eurokey\b/gi, 'geöffnet mit Eurokey'],
+    [/\baccess \*?only\*? with eurokey\b/gi, 'Zugang nur mit Eurokey'],
+    [/\beurokey only\b/gi, 'nur mit Eurokey'],
+    [/\bonly with eurokey\b/gi, 'nur mit Eurokey'],
+    [/\beurokey required\b/gi, 'Eurokey erforderlich'],
+    [/\beurokey needed\b/gi, 'Eurokey erforderlich'],
+    [/\bwith eurokey\b/gi, 'mit Eurokey'],
+    [/\bpublic holiday(s)?\b/gi, 'Feiertage'],
+    [/\bsunrise to sunset\b/gi, 'Sonnenaufgang bis Sonnenuntergang'],
+
+    // Statusbegriffe
+    [/\bclosed\b/gi, 'geschlossen'],
+    [/\boff\b/gi, 'geschlossen'],
+    [/\bopen\b/gi, 'geöffnet'],
+    [/\bPH\b/g, 'Feiertage'],
+
+    // Tage & Monate
+    [/\bMo\b/g, 'Mo'],
+    [/\bTu\b/g, 'Di'],
+    [/\bWe\b/g, 'Mi'],
+    [/\bTh\b/g, 'Do'],
+    [/\bFr\b/g, 'Fr'],
+    [/\bSa\b/g, 'Sa'],
+    [/\bSu\b/g, 'So'],
+    [/\bJan\b/g, 'Jan'],
+    [/\bFeb\b/g, 'Feb'],
+    [/\bMar\b/g, 'Mär'],
+    [/\bApr\b/g, 'Apr'],
+    [/\bMay\b/g, 'Mai'],
+    [/\bJun\b/g, 'Jun'],
+    [/\bJul\b/g, 'Jul'],
+    [/\bAug\b/g, 'Aug'],
+    [/\bSep\b/g, 'Sep'],
+    [/\bOct\b/g, 'Okt'],
+    [/\bNov\b/g, 'Nov'],
+    [/\bDec\b/g, 'Dez'],
+
+    // Trennzeichen und Format
+    [/\s*\|\|\s*/g, ' | '],
+    [/-/g, '–']
+  ];
+
+  function translateText(val) {
+    if (!val) return '';
+    let res = String(val);
+    textDict.forEach(([regex, repl]) => {
+      res = res.replace(regex, repl);
+    });
+    return res.replace(/"/g, '').trim();
+  }
+
+  function translateFee(fee) {
+    if (!fee) return '';
+    const f = fee.trim().toLowerCase();
+    if (f === 'yes') return 'Kostenpflichtig';
+    if (f === 'no') return 'Kostenlos';
+    return translateText(fee);
+  }
+
+  const svgs = {
+    toilet: `
+      <svg viewBox="0 0 32 32">
+        <circle cx="8" cy="7" r="2.2"/>
+        <path d="M12.5 14.5v-1.6c-1.1.01-2.2-.5-2.9-1.3l-.9-1c-.1-.1-.3-.2-.4-.3-.3-.2-.7-.2-1.1 0-.3.1-.7.7-.7 1.3v4.2c0 .8.6 1.4 1.4 1.4h2.5l1.1 2.3c.2.4.6.5 1 .3.4-.2.5-.6.3-1l-.9-2.1h-1.6v-3.2c.5.5 1.3.9 2 1 .5.1.8.5.8.9z"/>
+        <path d="M6.5 18c-1.6 0-2.8-1.3-2.8-2.8s1.3-2.8 2.8-2.8c.3 0 .7.1 1 .2l1.1-1.1C8 11.2 7.3 11 6.5 11c-2.3 0-4.2 1.9-4.2 4.2s1.9 4.2 4.2 4.2c1.8 0 3.4-1.1 4-2.8l-1.5-.5c-.4 1.2-1.4 1.9-2.5 1.9z"/>
+        <text x="16" y="19" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica" font-size="11" font-weight="bold" fill="#ffffff">WC</text>
+      </svg>
+    `,
+    elevator: `
+      <svg viewBox="0 0 24 24">
+        <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-8 15.5l-2.5-3h5L11 18.5zm0-13l2.5 3h-5L11 5.5zM17 14h-1v-4h1v4zm-11 0h1v-4H6v4z"/>
+      </svg>
+    `,
+    shower: `
+      <svg viewBox="0 0 24 24">
+        <circle cx="12" cy="4" r="2"/>
+        <path d="M12 7c-2.76 0-5 2.24-5 5v1h10v-1c0-2.76-2.24-5-5-5zm-4 8h2v5H8zm6 0h2v5h-2z"/>
+      </svg>
+    `,
+    door: `
+      <svg viewBox="0 0 24 24">
+        <path d="M19 19V5c0-1.1-.9-2-2-2H7c-1.1 0-2 .9-2 2v14H3v2h18v-2h-2zm-4-6c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1z"/>
+      </svg>
+    `,
+    default: `
+      <svg viewBox="0 0 24 24">
+        <path d="M12.65 10C11.83 7.67 9.61 6 7 6c-3.31 0-6 2.69-6 6s2.69 6 6 6c2.61 0 4.83-1.67 5.65-4H17v4h4v-4h2v-4H12.65zM7 14c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z"/>
+      </svg>
+    `
+  };
+
+  function getIcon(type) {
+    let svg = svgs.default;
+    const t = (type || '').toLowerCase();
+    if (t.includes('toilet') || t.includes('wc')) {
+      svg = svgs.toilet;
+    } else if (t.includes('elevator') || t.includes('lift')) {
+      svg = svgs.elevator;
+    } else if (t.includes('shower') || t.includes('dusche')) {
+      svg = svgs.shower;
+    } else if (t.includes('door') || t.includes('tür') || t.includes('barrier')) {
+      svg = svgs.door;
+    }
+
+    return L.divIcon({
+      className: 'eurokey-pin',
+      html: svg,
+      iconSize: [32, 32],
+      iconAnchor: [16, 16],
+      popupAnchor: [0, -16]
+    });
+  }
+
+  // --- "Mein Standort"-Button ---
+  const locateControl = L.control({ position: 'bottomright' });
+  locateControl.onAdd = function() {
+    const div = L.DomUtil.create('div', 'locate-btn-control');
+    div.innerHTML = '<button id="locateMeBtn" title="Meinen Standort anzeigen">📍</button>';
+    L.DomEvent.disableClickPropagation(div);
+    return div;
+  };
+  locateControl.addTo(map);
+
+  let userLocationMarker = null;
+  let userLocationCircle = null;
+
+  document.getElementById('locateMeBtn').addEventListener('click', function() {
+    this.classList.add('locating');
+    map.locate({ setView: true, maxZoom: 16, enableHighAccuracy: true, timeout: 10000 });
+  });
+
+  map.on('locationfound', function(e) {
+    document.getElementById('locateMeBtn').classList.remove('locating');
+    if (userLocationMarker) map.removeLayer(userLocationMarker);
+    if (userLocationCircle) map.removeLayer(userLocationCircle);
+
+    userLocationCircle = L.circle(e.latlng, {
+      radius: e.accuracy / 2,
+      color: '#4285F4',
+      fillColor: '#4285F4',
+      fillOpacity: 0.15,
+      weight: 1
+    }).addTo(map);
+
+    userLocationMarker = L.circleMarker(e.latlng, {
+      radius: 8,
+      color: '#fff',
+      weight: 2,
+      fillColor: '#4285F4',
+      fillOpacity: 1
+    }).addTo(map).bindPopup('Du bist hier (ungefähre Genauigkeit: ' + Math.round(e.accuracy) + ' m)');
+  });
+
+  map.on('locationerror', function(e) {
+    document.getElementById('locateMeBtn').classList.remove('locating');
+    let msg = 'Standort konnte nicht ermittelt werden.';
+    if (!window.isSecureContext) {
+      msg += ' Diese Seite läuft über HTTP — die meisten Browser erlauben GPS-Zugriff nur über HTTPS.';
+    } else {
+      msg += ' Bitte Standortzugriff für diese Seite in den Browsereinstellungen erlauben.';
+    }
+    alert(msg);
+  });
+
+  const clusterGroup = L.markerClusterGroup({
+    showCoverageOnHover: false,
+    maxClusterRadius: 40
+  });
+  map.addLayer(clusterGroup);
+
+  let allMarkers = [];
+  let currentReports = {};
+  let currentFilter = 'all';
+
+  function buildPopupContent(item) {
+    let html = `<div class="popup-title">${item.name || 'Eurokey Standort'}</div>`;
+    
+    if (item.address) {
+      html += `<div class="popup-row">📍 <span>${item.address}</span></div>`;
+    }
+    if (item.operator) {
+      html += `<div class="popup-row">🏢 <span><strong>Betreiber:</strong> ${item.operator}</span></div>`;
+    }
+    if (item.opening_hours) {
+      html += `<div class="popup-row">🕒 <span><strong>Öffnungszeiten:</strong> ${translateText(item.opening_hours)}</span></div>`;
+    }
+    if (item.fee) {
+      html += `<div class="popup-row">🪙 <span><strong>Gebühr:</strong> ${translateFee(item.fee)}</span></div>`;
+    }
+    if (item.level) {
+      html += `<div class="popup-row">📶 <span><strong>Ebene:</strong> ${item.level}</span></div>`;
+    }
+    if (item.desc) {
+      html += `<div class="popup-row">ℹ️ <span>${translateText(item.desc)}</span></div>`;
+    }
+    if (item.type) {
+      const badgeText = typeLabels[item.type] || item.type;
+      html += `<div><span class="popup-badge">${badgeText}</span></div>`;
+    }
+    if (item.source === 'community') {
+      html += `<div><span class="popup-badge" style="background:#fef3c7;color:#92400e;">Community-Eintrag</span></div>`;
+    }
+
+    const navUrl = `https://www.google.com/maps/dir/?api=1&destination=${item.lat},${item.lon}`;
+    html += `<div><a class="route-btn" href="${navUrl}" target="_blank" rel="noopener">🧭 Route berechnen</a></div>`;
+    
+
+    const poiId = String(item.id || (item.lat + "_" + item.lon));
+    const poiReps = (window.currentReports && window.currentReports[poiId]) ? window.currentReports[poiId] : {};
+    let statusBadge = "";
+    if (poiReps.broken) statusBadge += `<div style="color:#d9534f;font-size:12px;margin-top:6px;font-weight:bold;">⚠️ Gemeldet: Schloss/Lift defekt (${poiReps.broken}x)</div>`;
+    if (poiReps.dirty) statusBadge += `<div style="color:#d97706;font-size:12px;margin-top:4px;font-weight:bold;">⚠️ Gemeldet: Verschmutzt (${poiReps.dirty}x)</div>`;
+    if (poiReps.inaccessible) statusBadge += `<div style="color:#d9534f;font-size:12px;margin-top:4px;font-weight:bold;">⚠️ Gemeldet: Versperrt/Baustelle (${poiReps.inaccessible}x)</div>`;
+
+    html += statusBadge;
+    html += `
+    <div style="margin-top: 10px; border-top: 1px solid #eee; padding-top: 8px;">
+      <details style="font-size: 12px; cursor: pointer;">
+        <summary style="color: #666; font-weight: 500;">Status oder Problem melden</summary>
+        <div style="margin-top: 8px; display: flex; flex-direction: column; gap: 5px;">
+          <input type="text" name="website" id="hp_${poiId}" style="display:none;" tabindex="-1" autocomplete="off">
+          <button style="padding:6px; font-size:11px; cursor:pointer; text-align:left; border:1px solid #ccc; border-radius:4px; background:#fff;" onclick="submitReport('${poiId}', 'broken')">🔧 Schloss klemmt / Defekt</button>
+          <button style="padding:6px; font-size:11px; cursor:pointer; text-align:left; border:1px solid #ccc; border-radius:4px; background:#fff;" onclick="submitReport('${poiId}', 'dirty')">🧹 Stark verschmutzt</button>
+          <button style="padding:6px; font-size:11px; cursor:pointer; text-align:left; border:1px solid #ccc; border-radius:4px; background:#fff;" onclick="submitReport('${poiId}', 'inaccessible')">🚫 Temporär versperrt (Baustelle)</button>
+          <button style="padding:6px; font-size:11px; cursor:pointer; text-align:left; border:1px solid #a3e635; border-radius:4px; background:#f0fdf4;" onclick="submitReport('${poiId}', 'ok')">✅ Alles in Ordnung / Funktioniert</button>
+        </div>
+      </details>
+    </div>`;
+
+    return html;
+
+  }
+
+  function applyFilters() {
+    const q = document.getElementById('searchInput').value.trim().toLowerCase();
+    clusterGroup.clearLayers();
+
+    const filtered = allMarkers.filter(m => {
+      const matchesSearch = !q || m.searchIndex.includes(q);
+      const matchesType = (currentFilter === 'all') || (m.poiType === currentFilter);
+      return matchesSearch && matchesType;
+    });
+
+    filtered.forEach(m => clusterGroup.addLayer(m));
+    document.getElementById('counter').innerText = `${filtered.length} von ${allMarkers.length} Standorten`;
+  }
+
+  function setupFilterButtons(availableTypes) {
+    const container = document.getElementById('filterContainer');
+    container.innerHTML = '';
+
+    const types = ['all', ...Array.from(availableTypes).sort()];
+
+    types.forEach(t => {
+      const btn = document.createElement('button');
+      btn.className = 'filter-btn' + (t === currentFilter ? ' active' : '');
+      btn.setAttribute('data-filter', t);
+      btn.innerText = typeLabels[t] || t;
+
+      btn.addEventListener('click', function() {
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        this.classList.add('active');
+        currentFilter = this.getAttribute('data-filter');
+        applyFilters();
       });
-      statusEl.innerText = `${items.length} Eurokey-Standorte geladen`;
+
+      container.appendChild(btn);
+    });
+  }
+
+  function submitReport(poiId, issueType) {
+    const hp = document.getElementById("hp_" + poiId);
+    if (hp && hp.value) return;
+    fetch("/api/report", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ poi_id: poiId, issue_type: issueType, website: hp ? hp.value : "" })
+    })
+    .then(r => r.json())
+    .then(res => {
+      if (res.error) alert(res.error);
+      else {
+        alert("Vielen Dank für deine Rückmeldung!");
+        location.reload();
+      }
+    })
+    .catch(() => alert("Fehler beim Senden der Meldung."));
+  }
+
+  function addItemsToMap(data) {
+    const uniqueTypes = new Set();
+    data.forEach(item => {
+      const markerType = item.type || 'toilets';
+      uniqueTypes.add(markerType);
+
+      const marker = L.marker([item.lat, item.lon], { icon: getIcon(markerType) });
+      marker.bindPopup(() => buildPopupContent(item));
+      marker.poiType = markerType;
+      marker.poiId = item.id || item.poi_id || (item.osm_id ? 'osm_' + item.osm_id : '');
+      marker.searchIndex = `${item.name || ''} ${item.address || ''} ${item.operator || ''}`.toLowerCase();
+      allMarkers.push(marker);
+    });
+    return uniqueTypes;
+  }
+
+  fetch("/api/reports")
+    .then(r => r.json())
+    .then(reps => { window.currentReports = reps || {}; })
+    .catch(() => { window.currentReports = {}; })
+    .finally(() => {
+      fetch('./data.json?v=' + Date.now())
+    .then(r => {
+      const lastMod = r.headers.get('last-modified');
+      if (lastMod) {
+        const d = new Date(lastMod);
+        const el = document.getElementById('dataTimestamp');
+        if (el) el.innerText = "Stand: " + d.toLocaleString("de-CH", { day: "2-digit", month: "2-digit", year: "numeric", hour: "2-digit", minute: "2-digit" });
+      }
+      return r.json();
+    })
+    .then(data => {
+      const uniqueTypes = addItemsToMap(data);
+
+      fetch('/api/community-locations')
+        .then(r => r.json())
+        .then(communityData => {
+          const communityTypes = addItemsToMap(communityData || []);
+          communityTypes.forEach(t => uniqueTypes.add(t));
+        })
+        .catch(() => {})
+        .finally(() => {
+          setupFilterButtons(uniqueTypes);
+          applyFilters();
+
+          // Automatischer Sprung zu POI aus URL (?poi=...)
+          const urlParams = new URLSearchParams(window.location.search);
+          const targetPoi = urlParams.get('poi');
+          if (targetPoi) {
+            const found = allMarkers.find(m => m.poiId === targetPoi);
+            if (found) {
+              map.setView(found.getLatLng(), 17);
+              found.openPopup();
+            }
+          }
+        });
+    });
     })
     .catch(err => {
       console.error(err);
-      statusEl.innerText = 'Fehler beim Laden der Standorte.';
+      document.getElementById('counter').innerText = 'Fehler beim Laden';
     });
 
-  // Optionales GPS – Karte bleibt auch ohne Freigabe voll nutzbar
-  map.locate({setView: true, maxZoom: 13});
-  map.on('locationfound', (e) => {
-    L.circleMarker(e.latlng, { radius: 7, color: '#0078FF', fillColor: '#0078FF', fillOpacity: 0.9 })
-      .addTo(map)
-      .bindPopup("Dein Standort");
+  document.getElementById('searchInput').addEventListener('input', applyFilters);
+
+  // --- Neuen Standort vorschlagen ---
+  const addLocationBtn = document.getElementById('addLocationBtn');
+  const placingBanner = document.getElementById('placingBanner');
+  const cancelPlacingBtn = document.getElementById('cancelPlacingBtn');
+  const addLocationModal = document.getElementById('addLocationModal');
+  const closeAddModalBtn = document.getElementById('closeAddModalBtn');
+  const cancelAddFormBtn = document.getElementById('cancelAddFormBtn');
+  const addLocationForm = document.getElementById('addLocationForm');
+  const pendingCoordsEl = document.getElementById('pendingCoords');
+
+  let placingMode = false;
+  let pendingLatLng = null;
+
+  function startPlacingMode() {
+    placingMode = true;
+    map.closePopup();
+    document.body.classList.add('map-placing');
+    placingBanner.style.display = 'block';
+  }
+
+  function stopPlacingMode() {
+    placingMode = false;
+    document.body.classList.remove('map-placing');
+    placingBanner.style.display = 'none';
+  }
+
+  function openAddModal(latlng) {
+    pendingLatLng = latlng;
+    pendingCoordsEl.innerText = `${latlng.lat.toFixed(5)}, ${latlng.lng.toFixed(5)}`;
+    addLocationModal.style.display = 'flex';
+  }
+
+  function closeAddModal() {
+    addLocationModal.style.display = 'none';
+    addLocationForm.reset();
+  }
+
+  addLocationBtn.addEventListener('click', () => {
+    if (placingMode) { stopPlacingMode(); return; }
+    startPlacingMode();
   });
-  map.on('locationerror', () => {
-    // Bleibt standardmässig auf Schweizer Übersicht
+
+  cancelPlacingBtn.addEventListener('click', stopPlacingMode);
+
+  map.on('click', (e) => {
+    if (!placingMode) return;
+    stopPlacingMode();
+    openAddModal(e.latlng);
+  });
+
+  closeAddModalBtn.addEventListener('click', closeAddModal);
+  cancelAddFormBtn.addEventListener('click', closeAddModal);
+  addLocationModal.addEventListener('click', (e) => {
+    if (e.target === addLocationModal) closeAddModal();
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      if (placingMode) stopPlacingMode();
+      if (addLocationModal.style.display === 'flex') closeAddModal();
+    }
+  });
+
+  addLocationForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    if (!pendingLatLng) return;
+
+    const hp = document.getElementById('addLocationHp');
+    const payload = {
+      lat: pendingLatLng.lat,
+      lon: pendingLatLng.lng,
+      name: document.getElementById('addName').value,
+      type: document.getElementById('addType').value,
+      address: document.getElementById('addAddress').value,
+      opening_hours: document.getElementById('addOpeningHours').value,
+      fee: document.getElementById('addFee').value,
+      desc: document.getElementById('addDesc').value,
+      website: hp ? hp.value : ''
+    };
+
+    fetch('/api/submit-location', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    })
+      .then(r => r.json())
+      .then(res => {
+        if (res.error) {
+          alert(res.error);
+        } else {
+          alert('Danke für deinen Vorschlag! Er wird geprüft und erscheint nach Freigabe auf der Karte.');
+          closeAddModal();
+        }
+      })
+      .catch(() => alert('Fehler beim Senden des Vorschlags.'));
   });
 </script>
+
 </body>
 </html>
