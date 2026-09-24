@@ -4246,24 +4246,6 @@
     "source": "opendata"
   },
   {
-    "id": "bs_wc_16",
-    "osm_id": null,
-    "osm_type": "",
-    "lat": 47.564532,
-    "lon": 7.568943,
-    "name": "Burgfelderstrasse 70",
-    "operator": "Kanton Basel-Stadt",
-    "address": "Burgfelderstrasse 70, 4055 Basel",
-    "opening_hours": "",
-    "fee": "no",
-    "charge": "",
-    "fee_centralkey": "",
-    "level": "",
-    "desc": "rollstuhlgängig, konventionell",
-    "type": "toilets",
-    "source": "opendata"
-  },
-  {
     "id": "bs_wc_17",
     "osm_id": null,
     "osm_type": "",
