@@ -4408,24 +4408,6 @@
     "source": "opendata"
   },
   {
-    "id": "bs_wc_41",
-    "osm_id": null,
-    "osm_type": "",
-    "lat": 47.564556,
-    "lon": 7.571561,
-    "name": "Strassburgerallee 18",
-    "operator": "Kanton Basel-Stadt",
-    "address": "Strassburgerallee 18, 4055 Basel",
-    "opening_hours": "",
-    "fee": "no",
-    "charge": "",
-    "fee_centralkey": "",
-    "level": "",
-    "desc": "rollstuhlgängig, konventionell",
-    "type": "toilets",
-    "source": "opendata"
-  },
-  {
     "id": "bs_wc_45",
     "osm_id": null,
     "osm_type": "",
