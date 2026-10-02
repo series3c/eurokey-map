@@ -4138,24 +4138,6 @@
     "source": "opendata"
   },
   {
-    "id": "bs_wc_124",
-    "osm_id": null,
-    "osm_type": "",
-    "lat": 47.558296,
-    "lon": 7.581458,
-    "name": "Spalenvorstadt",
-    "operator": "Kanton Basel-Stadt",
-    "address": "Spalenvorstadt, 4051 Basel",
-    "opening_hours": "",
-    "fee": "no",
-    "charge": "",
-    "fee_centralkey": "",
-    "level": "",
-    "desc": "rollstuhlgängig, selbstreinigend",
-    "type": "toilets",
-    "source": "opendata"
-  },
-  {
     "id": "bs_wc_125",
     "osm_id": null,
     "osm_type": "",
