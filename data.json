@@ -4300,24 +4300,6 @@
     "source": "opendata"
   },
   {
-    "id": "bs_wc_177",
-    "osm_id": null,
-    "osm_type": "",
-    "lat": 47.58029,
-    "lon": 7.58642,
-    "name": "Uferstrasse 70",
-    "operator": "Kanton Basel-Stadt",
-    "address": "Uferstrasse 70, 4057 Basel",
-    "opening_hours": "",
-    "fee": "no",
-    "charge": "",
-    "fee_centralkey": "",
-    "level": "",
-    "desc": "rollstuhlgängig, konventionell",
-    "type": "toilets",
-    "source": "opendata"
-  },
-  {
     "id": "bs_wc_45",
     "osm_id": null,
     "osm_type": "",
