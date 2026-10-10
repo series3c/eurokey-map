@@ -4120,24 +4120,6 @@
     "source": "opendata"
   },
   {
-    "id": "bs_wc_144",
-    "osm_id": null,
-    "osm_type": "",
-    "lat": 47.571244,
-    "lon": 7.578627,
-    "name": "Voltamatte",
-    "operator": "Kanton Basel-Stadt",
-    "address": "Voltamatte / Elsässerstrasse., 4056 Basel",
-    "opening_hours": "",
-    "fee": "yes",
-    "charge": "",
-    "fee_centralkey": "",
-    "level": "",
-    "desc": "rollstuhlgängig, selbstreinigend",
-    "type": "toilets",
-    "source": "opendata"
-  },
-  {
     "id": "bs_wc_158",
     "osm_id": null,
     "osm_type": "",
