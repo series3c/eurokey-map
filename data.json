@@ -4192,24 +4192,6 @@
     "source": "opendata"
   },
   {
-    "id": "bs_wc_62",
-    "osm_id": null,
-    "osm_type": "",
-    "lat": 47.55162,
-    "lon": 7.587213,
-    "name": "Heuwaage",
-    "operator": "Kanton Basel-Stadt",
-    "address": "Heuwaage (Lohweg 2), 4051 Basel",
-    "opening_hours": "",
-    "fee": "no",
-    "charge": "",
-    "fee_centralkey": "",
-    "level": "",
-    "desc": "rollstuhlgängig, selbstreinigend",
-    "type": "toilets",
-    "source": "opendata"
-  },
-  {
     "id": "bs_wc_64",
     "osm_id": null,
     "osm_type": "",
