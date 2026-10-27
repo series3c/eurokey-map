@@ -4479,6 +4479,24 @@
     "source": "opendata"
   },
   {
+    "id": "bs_wc_74",
+    "osm_id": null,
+    "osm_type": "",
+    "lat": 47.558211,
+    "lon": 7.597812,
+    "name": "Wettsteinplatz",
+    "operator": "Kanton Basel-Stadt",
+    "address": "Wettsteinplatz, 4058 Basel",
+    "opening_hours": "",
+    "fee": "no",
+    "charge": "",
+    "fee_centralkey": "",
+    "level": "",
+    "desc": "rollstuhlgängig, selbstreinigend",
+    "type": "toilets",
+    "source": "opendata"
+  },
+  {
     "id": "bs_wc_118",
     "osm_id": null,
     "osm_type": "",
