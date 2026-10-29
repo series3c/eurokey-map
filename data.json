@@ -4065,6 +4065,24 @@
     "source": "opendata"
   },
   {
+    "id": "bs_wc_21",
+    "osm_id": null,
+    "osm_type": "",
+    "lat": 47.574969,
+    "lon": 7.601047,
+    "name": "Freiburgerstrasse 4",
+    "operator": "Kanton Basel-Stadt",
+    "address": "Freiburgerstrasse 4, 4057 Basel",
+    "opening_hours": "",
+    "fee": "no",
+    "charge": "",
+    "fee_centralkey": "",
+    "level": "",
+    "desc": "rollstuhlgängig, konventionell",
+    "type": "toilets",
+    "source": "opendata"
+  },
+  {
     "id": "bs_wc_53",
     "osm_id": null,
     "osm_type": "",
